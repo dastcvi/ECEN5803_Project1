@@ -16,20 +16,39 @@
 
 int main(void)
 {
+  #ifdef DEBUG
+  Serial pc(USBTX, USBRX);
+  #endif
   MMA8451Q accelerometer(PTE25, PTE24, 0x3a);
   TSIAnalogSlider slider(9, 10, 40);
   PwmOut LED_red(LED_RED);
   PwmOut LED_grn(LED_GREEN);
   PwmOut LED_blu(LED_BLUE);
+  /* Try to reduce stuttering */
+  LED_red.period_ms(10);
+  LED_blu.period_ms(10);
+  LED_grn.period_ms(10);
+  /* LEDs are active low - initialize with 100% duty cycle to turn off */
+  LED_red = 1.0f;
+  LED_grn = 1.0f;
+  LED_blu = 1.0f;
 
-  float bright = 0.5f;
-  
+  /* Initial LED brightness: 20% */
+  float bright = 0.8f;
+
   do {
     /* Determine LED brightness */
-    bright = slider.readPercentage();
-    LED_red = fabs(accelerometer.getAccX()) > 0.2 ? bright : 0.0f;
-    LED_grn = fabs(accelerometer.getAccY()) > 0.2 ? bright : 0.0f;
-    LED_blu = fabs(accelerometer.getAccZ()) > 0.2 ? bright : 0.0f;
+    /* Don't reset when slider isn't being touched */
+    if (slider.readPercentage() != 0.0f) {
+      bright = sqrt(slider.readPercentage());
+    }
+    LED_red = 1.0f - fabs(accelerometer.getAccX()) * bright;
+    LED_blu = 1.0f - fabs(accelerometer.getAccY()) * bright;
+    LED_grn = 1.0f - fabs(accelerometer.getAccZ()) * bright;
+    #ifdef DEBUG
+    pc.printf("Slider: %f", slider.readPercentage());
+    pc.printf("\tR: %f\tB: %f\tG: %f\r\n", (float)(LED_red), (float)(LED_blu), (float)(LED_grn));
+    #endif
     wait(0.1);
   } while (true);
 }
