@@ -26,6 +26,8 @@
 #include "serial_api.h"
 #include "platform/NonCopyable.h"
 
+#define MBED_CONF_PLATFORM_DEFAULT_SERIAL_BAUD_RATE  	115200
+
 namespace mbed {
 /** \addtogroup drivers */
 

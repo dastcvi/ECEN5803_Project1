@@ -46,11 +46,15 @@ DigitalOut greenLED(LED_GREEN);
 DigitalOut blueLED(LED_BLUE);                                        
 
 Serial pc(USBTX, USBRX);
- 
+
+void flip(void)
+{
+	  greenLED = !greenLED;
+}
+
 int main() 
 {
 /****************      ECEN 5803 add code as indicated   ***************/
-                    //  Add code to call timer0 function every 100 uS
     tick.attach(&timer0, 0.0001); // setup ticker to call timer0 every 100 us
 
     pc.printf("Hello World!\n"); 
@@ -67,18 +71,14 @@ int main()
     pc.printf("\r\nHello World!\n\n\r");
 
     /****************      ECEN 5803 add code as indicated   ***************/
-    // uncomment this section after adding monitor code.  
    /* send a message to the terminal  */                    
-   /*
    UART_direct_msg_put("\r\nSystem Reset\r\nCode ver. ");
    UART_direct_msg_put( CODE_VERSION );
    UART_direct_msg_put("\r\n");
    UART_direct_msg_put( COPYRIGHT );
    UART_direct_msg_put("\r\n");
 
-   set_display_mode();                                      
-   */
-   
+   set_display_mode();
 
     while(1)       /// Cyclical Executive Loop
     {
@@ -88,15 +88,12 @@ int main()
 //      __clear_watchdog_timer();
 
    /****************      ECEN 5803 add code as indicated   ***************/
-    // uncomment this section after adding monitor code. 
-    /* 
         serial();            // Polls the serial port
         chk_UART_msg();     // checks for a serial port message received
         monitor();           // Sends serial port output messages depending
                          //     on commands received and display mode
 
         if ((SwTimerIsrCounter & 0x1FFF) > 0x0FFF)
-    */
         {
             flip();  // Toggle Green LED
         }
