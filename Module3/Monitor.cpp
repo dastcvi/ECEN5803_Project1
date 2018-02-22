@@ -250,15 +250,15 @@ void monitor(void)
          {
             if (display_flag == 1)
             {
-               UART_msg_put("\r\nNORMAL ");
-               UART_msg_put(" Flow: ");
+               UART_msg_put("\r\n\nNORMAL ----");
+               UART_msg_put("\r\nFlow: ");
                // ECEN 5803 add code as indicated
                //  add flow data output here, use UART_hex_put or similar for 
                // numbers
-               UART_msg_put(" Temp: ");
+               UART_msg_put("\r\nTemp: ");
                //  add flow data output here, use UART_hex_put or similar for 
                // numbers
-               UART_msg_put(" Freq: ");
+               UART_msg_put("\r\nFreq: ");
                //  add flow data output here, use UART_hex_put or similar for 
                // numbers
                display_flag = 0;
@@ -269,15 +269,15 @@ void monitor(void)
          {
             if (display_flag == 1)
             {
-               UART_msg_put("\r\nDEBUG ");
-               UART_msg_put(" Flow: ");
+               UART_msg_put("\r\n\nDEBUG -----");
+               UART_msg_put("\r\nFlow: ");
                // ECEN 5803 add code as indicated               
                //  add flow data output here, use UART_hex_put or similar for 
                // numbers
-               UART_msg_put(" Temp: ");
+               UART_msg_put("\r\nTemp: ");
                //  add flow data output here, use UART_hex_put or similar for 
                // numbers
-               UART_msg_put(" Freq: ");
+               UART_msg_put("\r\nFreq: ");
                //  add flow data output here, use UART_hex_put or similar for 
                // numbers
                

@@ -35,7 +35,8 @@
 #include "shared.h"
 #undef MAIN
 
-extern volatile uint16_t SwTimerIsrCounter; 
+extern volatile uint16_t SwTimerIsrCounter;
+extern volatile UCHAR red_led_flag;
 
 
 Ticker tick;             //  Creates a timer interrupt using mbed methods
@@ -50,6 +51,11 @@ Serial pc(USBTX, USBRX);
 void flip(void)
 {
 	  greenLED = !greenLED;
+}
+
+void flip_red(void)
+{
+    redLED = !redLED;
 }
 
 int main() 
@@ -98,6 +104,10 @@ int main()
             flip();  // Toggle Green LED
         }
    
+				if (red_led_flag) {
+				    red_led_flag = false;
+				    flip_red();
+				}
     } 
        
 }

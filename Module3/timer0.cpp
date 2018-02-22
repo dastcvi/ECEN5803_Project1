@@ -102,6 +102,9 @@ extern "C" {
   UCHAR  display_flag = 0;   // flag between timer interrupt and monitor.c, like
                         // a binary semaphore      
  
+	 volatile   UCHAR red_led_flag = 0; // flag between timer and main
+	 volatile   UCHAR red_led_timer = 0;
+	
    static   uint32_t System_Timer_count = 0; // 32 bits, counts for 
                                                   // 119 hours at 100 us period
    static   uint16_t timer0_count = 0; // 16 bits, counts for 
@@ -255,9 +258,13 @@ void timer0(void)
 //    B. Heartbeat/ LED outputs
 //   Generate Outputs  ************************************
  
-    //ECEN 5803 add code as indicated
+		//ECEN 5803 add code as indicated
     // Create an 0.5 second RED LED heartbeat here. 
- 
+    // 500 ms / 6.4 ms ~= 78
+    if (++red_led_timer == 78) {
+        red_led_timer = 0;
+        red_led_flag = !red_led_flag;
+		}
  
 
    }   // end 6.4 ms group B
