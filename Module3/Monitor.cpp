@@ -56,7 +56,8 @@ void set_display_mode(void)
   UART_direct_msg_put("\r\n Hit NOR - Normal");
   UART_direct_msg_put("\r\n Hit QUI - Quiet");
   UART_direct_msg_put("\r\n Hit DEB - Debug" );
-  UART_direct_msg_put("\r\n Hit V - Version#\r\n");
+  UART_direct_msg_put("\r\n Hit V - Version#");
+  UART_direct_msg_put("\r\n Hit R - Print Registers\r\n");
   UART_direct_msg_put("\r\nSelect:  ");
   
 }
@@ -103,7 +104,7 @@ void chk_UART_msg(void)
          }
          else if ((display_mode == QUIET) && (msg_buf[0] != 0x02) && 
                   (msg_buf[0] != 'D') && (msg_buf[0] != 'N') && 
-                  (msg_buf[0] != 'V') &&
+                  (msg_buf[0] != 'V') && (msg_buf[0] != 'R') &&
                   (msg_buf_idx != 0))
          {                          // if first character is bad in Quiet mode
             msg_buf_idx = 0;        // then start over
@@ -176,6 +177,11 @@ void UART_msg_process(void)
             display_timer = 0;
             break;
                 
+				 case 'R':
+					  display_mode = REGISTER;
+				    UART_msg_put("\r\nMode=REGISTER\n");
+				    display_timer = 0;
+				    break;
          default:
             err = 1;
       }
@@ -281,6 +287,13 @@ void monitor(void)
                //  add flow data output here, use UART_hex_put or similar for 
                // numbers
                
+
+              
+               // clear flag to ISR      
+               display_flag = 0;
+             }   
+         }  
+         break;
                
  /****************      ECEN 5803 add code as indicated   ***************/             
                //  Create a display of  error counts, sensor states, and
@@ -292,16 +305,16 @@ void monitor(void)
                //  Create a command to read 16 words from the current stack 
                // and display it in reverse chronological order.
               
-              
-               // clear flag to ISR      
-               display_flag = 0;
-             }   
-         }  
-         break;
-
+			case(REGISTER):
+				if (display_flag == 1) {
+					UART_msg_put("\r\nREGISTER ---");
+					display_flag = 0;
+				}
+				break;
       default:
       {
          UART_msg_put("Mode Error");
+				 break;
       }  
    }
 }  

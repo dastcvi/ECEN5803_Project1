@@ -52,7 +52,7 @@
 #define COPYRIGHT "Copyright (c) University of Colorado" 
      
  enum boolean { FALSE, TRUE };           /// \enum boolean  
- enum dmode {QUIET, NORMAL, DEBUG, VERSION}; 
+ enum dmode {QUIET, NORMAL, DEBUG, VERSION, REGISTER}; 
  
  typedef unsigned char UCHAR;       
  typedef unsigned char bit;
