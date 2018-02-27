@@ -99,14 +99,14 @@ bool adc_setup()
   //    ADC0->SC1[0] |= 0b11110;               // select REFSL as input
 
   // channel-specific (vortex)
-  ADC0->CFG1   |= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
-  ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
-  ADC0->SC1[0] |= 0b00001;               // select DAD1 as input
+  // ADC0->CFG1   |= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
+  // ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
+  // ADC0->SC1[0] |= 0b00001;               // select DAD1 as input
 
   // channel-specific (temperature)
-  //    ADC0->CFG1   &= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
-  //    ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
-  //    ADC0->SC1[0] |= 0b11010;               // select Temp Sensor as input
+  ADC0->CFG1   &= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
+  ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
+  ADC0->SC1[0] |= 0b11010;               // select Temp Sensor as input
 
   // start ADC calibration
   ADC0->SC2 &= ~ADC_SC2_ADTRG_MASK; // ensure software trigger is set
@@ -271,5 +271,14 @@ void output_LCD()
 }
 
 void read_temperature() {
-  temperature = (float)(temp_adc) + 274.15;
+  float Vtemp = (float)(temp_adc);
+  /* Begin code from "Temperature Sensor for the HCS08 Microcontroller Family" app note document */
+  Vtemp = Vtemp * 0.0029296875f;
+  if (Vtemp => .7012f) {
+    temperature = 25.0f – ((Vtemp – .7012f)/.001646f);
+  } else {
+    temperature = 25.0f – ((Vtemp–.7012f)/.001749f);
+  }
+  /* End code from "Temperature Sensor for the HCS08 Microcontroller Family" app note document */
+  temperature += 274.15f; /* Convert from Celsius to Kelvin */
 }
