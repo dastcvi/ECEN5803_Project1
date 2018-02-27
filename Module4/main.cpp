@@ -195,10 +195,10 @@ int main()
     /****************      ECEN 5803 add code as indicated   ***************/
 
     measurement = read_ADC();
-    flow_rate = calculate_flow(measurement, &frequency);
-    output_420(flow_rate);
-    output_pulse(frequency);
-    output_LCD(flow_rate);
+    calculate_flow(measurement);
+    output_420();
+    output_pulse();
+    output_LCD();
     if ((SwTimerIsrCounter & 0x1FFF) > 0x0FFF) {
       flip();  // Toggle Green LED
     }
@@ -249,7 +249,7 @@ void calculate_flow(uint16_t measurement)
   frequency = (float)(zero_crossings) / ((float)(data_points) * 4.0f / 3.0f * timestep);
 
   /* Next: calculate velocity from frequency estimate */
-  velocity = 1.0f / (diameter_m * rho) * 0.00000111051f * (3355000.0f * diameter_m * diameter_m * freq * rho + 6702921.0f * viscosity);
+  velocity = 1.0f / (diameter_m * rho) * 0.00000111051f * (3355000.0f * diameter_m * diameter_m * frequency * rho + 6702921.0f * viscosity);
 
   /* Next: calculate flow rate from velocity */
   flow_rate = velocity * 3.28084f * pid_in * pid_in * 2.45f; /* units of gallons per minute */
@@ -274,10 +274,10 @@ void read_temperature() {
   float Vtemp = (float)(temp_adc);
   /* Begin code from "Temperature Sensor for the HCS08 Microcontroller Family" app note document */
   Vtemp = Vtemp * 0.0029296875f;
-  if (Vtemp => .7012f) {
-    temperature = 25.0f – ((Vtemp – .7012f)/.001646f);
+  if (Vtemp >= .7012f) {
+    temperature = 25.0f - ((Vtemp - .7012f) / .001646f);
   } else {
-    temperature = 25.0f – ((Vtemp–.7012f)/.001749f);
+    temperature = 25.0f - ((Vtemp - .7012f) / .001749f);
   }
   /* End code from "Temperature Sensor for the HCS08 Microcontroller Family" app note document */
   temperature += 274.15f; /* Convert from Celsius to Kelvin */
