@@ -55,7 +55,7 @@ extern volatile uint16_t SwTimerIsrCounter;
 uint16_t read_ADC();
 double calculate_flow(uint16_t);
 void output_420(double);
-void output_pulse(double);
+void output_pulse(double, double*);
 void output_LCD(double);
 
 Ticker tick;             //  Creates a timer interrupt using mbed methods
@@ -178,6 +178,7 @@ int main()
 
   uint16_t measurement;
   double flow_rate;
+  double frequency;
 
   while(1) {     // Cyclical Executive Loop
     count++;                  // counts the number of times through the loop
@@ -192,9 +193,9 @@ int main()
     /****************      ECEN 5803 add code as indicated   ***************/
 
     measurement = read_ADC();
-    flow_rate = calculate_flow(measurement);
+    flow_rate = calculate_flow(measurement, &frequency);
     output_420(flow_rate);
-    output_pulse(flow_rate);
+    output_pulse(frequency);
     output_LCD(flow_rate);
     if ((SwTimerIsrCounter & 0x1FFF) > 0x0FFF) {
       flip();  // Toggle Green LED
@@ -216,7 +217,7 @@ uint16_t read_ADC()
 
 /* Given the next measurement data point, calculate the estimated flow rate */
 /* This function has memory */
-double calculate_flow(uint16_t measurement)
+double calculate_flow(uint16_t measurement, double * return_frequency)
 {
   /* Declare static variables */
   static double freq = 0;
@@ -253,6 +254,7 @@ double calculate_flow(uint16_t measurement)
   /* Next: calculate flow rate from velocity */
   flow_rate = velocity * 3.28084 * pid_in * pid_in * 2.45; /* units of gallons per minute */
 
+  *return_frequency = freq;
   return flow_rate;
 }
 
