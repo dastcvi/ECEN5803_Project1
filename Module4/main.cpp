@@ -53,10 +53,11 @@ extern volatile uint16_t SwTimerIsrCounter;
 
 /* Superloop function prototypes */
 uint16_t read_ADC();
-float calculate_flow(uint16_t);
+float calculate_flow(uint16_t, float*);
 void output_420(float);
-void output_pulse(float, float*);
+void output_pulse(float);
 void output_LCD(float);
+float read_temperature();
 
 Ticker tick;             //  Creates a timer interrupt using mbed methods
 /****************      ECEN 5803 add code as indicated   ***************/
@@ -68,7 +69,7 @@ DigitalOut blueLED(LED_BLUE);
 
 AnalogIn vrefl_adc(PTB0);
 AnalogIn vortex_adc(PTB1);
-AnalogIn temp_adc(PTB2);   
+AnalogIn temp_adc(PTB2);
 
 PwmOut pwm3(PTE30);
 PwmOut pwm4(PTE31);
@@ -79,61 +80,61 @@ Serial pc(USBTX, USBRX);
 
 bool adc_setup()
 {
-    ADC0->CFG1   &= ~ADC_CFG1_ADLPC_MASK;  // no low power
-    ADC0->CFG1   &= ~ADC_CFG1_ADIV_MASK;   // clock divider = 1
-    ADC0->CFG1   |= ADC_CFG1_ADLSMP_MASK;  // long sample time
-    ADC0->CFG1   &= ~ADC_CFG1_ADICLK_MASK; // clock source = bus clock
-    ADC0->SC3    |= ADC_SC3_ADCO_MASK;     // enable continuous conversions
-    ADC0->SC1[0] &= ~ADC_SC1_DIFF_MASK;    // single ended conversion
-    
-    // channel-specific (REFSL)
-//    ADC0->CFG1   &= ~ADC_CFG1_MODE_MASK;   // 8-bit, single-ended
-//    ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
-//    ADC0->SC1[0] |= 0b11110;               // select REFSL as input
-    
-    // channel-specific (vortex)
-    ADC0->CFG1   |= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
-    ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
-    ADC0->SC1[0] |= 0b00001;               // select DAD1 as input
-    
-    // channel-specific (temperature)
-//    ADC0->CFG1   &= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
-//    ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
-//    ADC0->SC1[0] |= 0b11010;               // select Temp Sensor as input
-    
-    // start ADC calibration
-    ADC0->SC2 &= ~ADC_SC2_ADTRG_MASK; // ensure software trigger is set
-    ADC0->SC3 |= ADC_SC3_CAL_MASK;    // start the calibration
-    while (!((ADC0->SC1[0] & ADC_SC1_COCO_MASK) >> ADC_SC1_COCO_SHIFT)); // wait for completion
-    if ((ADC0->SC3 &  ADC_SC3_CALF_MASK) >> ADC_SC3_CALF_SHIFT) {
-        return false;
-    }
+  ADC0->CFG1   &= ~ADC_CFG1_ADLPC_MASK;  // no low power
+  ADC0->CFG1   &= ~ADC_CFG1_ADIV_MASK;   // clock divider = 1
+  ADC0->CFG1   |= ADC_CFG1_ADLSMP_MASK;  // long sample time
+  ADC0->CFG1   &= ~ADC_CFG1_ADICLK_MASK; // clock source = bus clock
+  ADC0->SC3    |= ADC_SC3_ADCO_MASK;     // enable continuous conversions
+  ADC0->SC1[0] &= ~ADC_SC1_DIFF_MASK;    // single ended conversion
 
-    // get plus-side calibration result
-    uint16_t cal_result = 0;
-    cal_result += ADC0->CLP0;
-    cal_result += ADC0->CLP1;
-    cal_result += ADC0->CLP2;
-    cal_result += ADC0->CLP3;
-    cal_result += ADC0->CLP4;
-    cal_result += ADC0->CLPS;
-    cal_result /= 2;
-    cal_result |= 0x8000;
-    ADC0->PG = cal_result;
+  // channel-specific (REFSL)
+  //    ADC0->CFG1   &= ~ADC_CFG1_MODE_MASK;   // 8-bit, single-ended
+  //    ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
+  //    ADC0->SC1[0] |= 0b11110;               // select REFSL as input
 
-    // get minus-side calibration result
-    cal_result = 0;
-    cal_result += ADC0->CLM0;
-    cal_result += ADC0->CLM1;
-    cal_result += ADC0->CLM2;
-    cal_result += ADC0->CLM3;
-    cal_result += ADC0->CLM4;
-    cal_result += ADC0->CLMS;
-    cal_result /= 2;
-    cal_result |= 0x8000;
-    ADC0->MG= cal_result;
+  // channel-specific (vortex)
+  ADC0->CFG1   |= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
+  ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
+  ADC0->SC1[0] |= 0b00001;               // select DAD1 as input
 
-    return true;
+  // channel-specific (temperature)
+  //    ADC0->CFG1   &= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
+  //    ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
+  //    ADC0->SC1[0] |= 0b11010;               // select Temp Sensor as input
+
+  // start ADC calibration
+  ADC0->SC2 &= ~ADC_SC2_ADTRG_MASK; // ensure software trigger is set
+  ADC0->SC3 |= ADC_SC3_CAL_MASK;    // start the calibration
+  while (!((ADC0->SC1[0] & ADC_SC1_COCO_MASK) >> ADC_SC1_COCO_SHIFT)); // wait for completion
+  if ((ADC0->SC3 &  ADC_SC3_CALF_MASK) >> ADC_SC3_CALF_SHIFT) {
+    return false;
+  }
+
+  // get plus-side calibration result
+  uint16_t cal_result = 0;
+  cal_result += ADC0->CLP0;
+  cal_result += ADC0->CLP1;
+  cal_result += ADC0->CLP2;
+  cal_result += ADC0->CLP3;
+  cal_result += ADC0->CLP4;
+  cal_result += ADC0->CLPS;
+  cal_result /= 2;
+  cal_result |= 0x8000;
+  ADC0->PG = cal_result;
+
+  // get minus-side calibration result
+  cal_result = 0;
+  cal_result += ADC0->CLM0;
+  cal_result += ADC0->CLM1;
+  cal_result += ADC0->CLM2;
+  cal_result += ADC0->CLM3;
+  cal_result += ADC0->CLM4;
+  cal_result += ADC0->CLMS;
+  cal_result /= 2;
+  cal_result |= 0x8000;
+  ADC0->MG= cal_result;
+
+  return true;
 }
 
 void flip()
@@ -165,13 +166,13 @@ int main()
 
   /****************      ECEN 5803 add code as indicated   ***************/
   // uncomment this section after adding monitor code.
-    UART_direct_msg_put("\r\nSystem Reset\r\nCode ver. ");
-    UART_direct_msg_put( CODE_VERSION );
-    UART_direct_msg_put("\r\n");
-    UART_direct_msg_put( COPYRIGHT );
-    UART_direct_msg_put("\r\n");
+  UART_direct_msg_put("\r\nSystem Reset\r\nCode ver. ");
+  UART_direct_msg_put( CODE_VERSION );
+  UART_direct_msg_put("\r\n");
+  UART_direct_msg_put( COPYRIGHT );
+  UART_direct_msg_put("\r\n");
 
-    set_display_mode();
+  set_display_mode();
 
   uint16_t measurement;
   float flow_rate;
@@ -230,16 +231,16 @@ float calculate_flow(uint16_t measurement, float * return_frequency)
   const float diameter_in = 0.5f; /* Bluff body diameter in inches */
   const float pid_m = 0.07366f; /* Pipe inner diameter in meters */
   const float pid_in = 2.9f; /* Pipe inner diameter in inches */
-  float T = 300f; /* Assume room temperature, units K */
+  float T = 300.0f; /* Assume room temperature, units K */
   const float timestep = 0.0001f; /* 100us sample time */
   const float viscosity = 2.4f * 0.00001f * pow(10.0f, 247.8f / (T - 140.0f)); /* units kg/m^3 */
-  const float rho = 1000f * (1.0f - (T + 288.9414f) / (508929.2f * (T + 68.12963f)) * pow(T - 3.9863f, 2.0f)); /* units kg/(m*s) */
+  const float rho = 1000.0f * (1.0f - (T + 288.9414f) / (508929.2f * (T + 68.12963f)) * pow(T - 3.9863f, 2.0f)); /* units kg/(m*s) */
 
   float velocity;
 
   /* Read temperature */
   T = read_temperature();
-  
+
   /* First: calculate frequency estimate from measurement */
   if ((measurement > OFFSET_ZERO && last_measurement < OFFSET_ZERO) || (measurement < OFFSET_ZERO && last_measurement > OFFSET_ZERO)) {
     /* Zero crossing */
@@ -274,5 +275,5 @@ void output_LCD(float flow_rate)
 }
 
 float read_temperature() {
-  return 300.0f;
+  return (float)(temp_adc) + 274.15;
 }
