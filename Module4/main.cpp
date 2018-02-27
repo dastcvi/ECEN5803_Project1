@@ -245,7 +245,7 @@ double calculate_flow(uint16_t measurement)
     zero_crossings++;
   }
   last_measurement = measurement;
-  freq = (double)(zero_crossings) / 2.0 / ((double)(data_points) * timestep);
+  freq = (double)(zero_crossings) / ((double)(data_points) * 4.0 / 3.0 * timestep);
 
   /* Next: calculate velocity from frequency estimate */
   velocity = 1 / (diameter_m * rho) * 0.00000111051 * (3355000 * diameter_m * diameter_m * freq * rho + 6702921 * viscosity);
