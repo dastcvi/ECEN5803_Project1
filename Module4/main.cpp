@@ -47,7 +47,7 @@
 #define V_TEMP25                (716U)      /*! Typical VTEMP25 in mV */
 #define M                       (1620U)     /*! Typical slope: (mV x 1000)/oC */
 #define STANDARD_TEMP           (25)
-#define MAX_FLOW_RATE           (0U)
+#define MAX_FLOW_RATE           (40195U)
 
 extern volatile uint16_t SwTimerIsrCounter;
 
