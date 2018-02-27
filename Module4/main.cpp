@@ -212,7 +212,7 @@ uint16_t read_ADC()
 /* For use in zero-crossing algorithm */
 #define UINT16_MAX 65535
 #define UINT16_HALF (UINT16_MAX / 2)
-#define OFFSET_ZERO 21
+#define OFFSET_ZERO 32767
 
 /* Given the next measurement data point, calculate the estimated flow rate */
 /* This function has memory */
@@ -233,6 +233,7 @@ double calculate_flow(uint16_t measurement)
   const double pid_m = 0.07366; /* Pipe inner diameter in meters */
   const double pid_in = 2.9; /* Pipe inner diameter in inches */
   const double T = 300; /* Assume room temperature, units K */
+  const double timestep = 0.0001; /* 100us sample time */
   const double viscosity = 2.4 * 0.00001 * pow(10.0, 247.8 / (T - 140.0)); /* units kg/m^3 */
   const double rho = 1000 * (1 - (T + 288.9414) / (508929.2 * (T + 68.12963)) * pow(T - 3.9863, 2.0)); /* units kg/(m*s) */
 
@@ -244,7 +245,7 @@ double calculate_flow(uint16_t measurement)
     zero_crossings++;
   }
   last_measurement = measurement;
-  freq = (double)(zero_crossings) / 2.0 / (double)(data_points);
+  freq = (double)(zero_crossings) / 2.0 / ((double)(data_points) * timestep);
 
   /* Next: calculate velocity from frequency estimate */
   velocity = 1 / (diameter_m * rho) * 0.00000111051 * (3355000 * diameter_m * diameter_m * freq * rho + 6702921 * viscosity);
