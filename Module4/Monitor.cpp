@@ -333,6 +333,8 @@ void monitor(void)
       display_flag = 0;
     }
     break;
+  case FLOWRATE:
+    break;
   default: {
     UART_msg_put("Mode Error");
     break;

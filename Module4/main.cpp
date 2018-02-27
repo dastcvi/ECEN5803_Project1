@@ -53,10 +53,10 @@ extern volatile uint16_t SwTimerIsrCounter;
 
 /* Superloop function prototypes */
 uint16_t read_ADC();
-double calculate_flow(uint16_t);
-void output_420(double);
-void output_pulse(double, double*);
-void output_LCD(double);
+float calculate_flow(uint16_t);
+void output_420(float);
+void output_pulse(float, float*);
+void output_LCD(float);
 
 Ticker tick;             //  Creates a timer interrupt using mbed methods
 /****************      ECEN 5803 add code as indicated   ***************/
@@ -165,8 +165,6 @@ int main()
 
   /****************      ECEN 5803 add code as indicated   ***************/
   // uncomment this section after adding monitor code.
-  /* send a message to the terminal  */
-  /*
     UART_direct_msg_put("\r\nSystem Reset\r\nCode ver. ");
     UART_direct_msg_put( CODE_VERSION );
     UART_direct_msg_put("\r\n");
@@ -174,11 +172,10 @@ int main()
     UART_direct_msg_put("\r\n");
 
     set_display_mode();
-  */
 
   uint16_t measurement;
-  double flow_rate;
-  double frequency;
+  float flow_rate;
+  float frequency;
 
   while(1) {     // Cyclical Executive Loop
     count++;                  // counts the number of times through the loop
@@ -217,11 +214,11 @@ uint16_t read_ADC()
 
 /* Given the next measurement data point, calculate the estimated flow rate */
 /* This function has memory */
-double calculate_flow(uint16_t measurement, double * return_frequency)
+float calculate_flow(uint16_t measurement, float * return_frequency)
 {
   /* Declare static variables */
-  static double freq = 0;
-  static double flow_rate = 0;
+  static float freq = 0;
+  static float flow_rate = 0;
   static uint16_t last_measurement = 0;
   static uint16_t zero_crossings = 0;
   static uint16_t data_points = 0;
@@ -229,46 +226,53 @@ double calculate_flow(uint16_t measurement, double * return_frequency)
   data_points++;
 
   /* Derived constants - ideally optimized away at compilation */
-  const double diameter_m = 0.0127; /* Bluff body diameter in meters */
-  const double diameter_in = 0.5; /* Bluff body diameter in inches */
-  const double pid_m = 0.07366; /* Pipe inner diameter in meters */
-  const double pid_in = 2.9; /* Pipe inner diameter in inches */
-  const double T = 300; /* Assume room temperature, units K */
-  const double timestep = 0.0001; /* 100us sample time */
-  const double viscosity = 2.4 * 0.00001 * pow(10.0, 247.8 / (T - 140.0)); /* units kg/m^3 */
-  const double rho = 1000 * (1 - (T + 288.9414) / (508929.2 * (T + 68.12963)) * pow(T - 3.9863, 2.0)); /* units kg/(m*s) */
+  const float diameter_m = 0.0127f; /* Bluff body diameter in meters */
+  const float diameter_in = 0.5f; /* Bluff body diameter in inches */
+  const float pid_m = 0.07366f; /* Pipe inner diameter in meters */
+  const float pid_in = 2.9f; /* Pipe inner diameter in inches */
+  float T = 300f; /* Assume room temperature, units K */
+  const float timestep = 0.0001f; /* 100us sample time */
+  const float viscosity = 2.4f * 0.00001f * pow(10.0f, 247.8f / (T - 140.0f)); /* units kg/m^3 */
+  const float rho = 1000f * (1.0f - (T + 288.9414f) / (508929.2f * (T + 68.12963f)) * pow(T - 3.9863f, 2.0f)); /* units kg/(m*s) */
 
-  double velocity;
+  float velocity;
 
+  /* Read temperature */
+  T = read_temperature();
+  
   /* First: calculate frequency estimate from measurement */
   if ((measurement > OFFSET_ZERO && last_measurement < OFFSET_ZERO) || (measurement < OFFSET_ZERO && last_measurement > OFFSET_ZERO)) {
     /* Zero crossing */
     zero_crossings++;
   }
   last_measurement = measurement;
-  freq = (double)(zero_crossings) / ((double)(data_points) * 4.0 / 3.0 * timestep);
+  freq = (float)(zero_crossings) / ((float)(data_points) * 4.0f / 3.0f * timestep);
 
   /* Next: calculate velocity from frequency estimate */
-  velocity = 1 / (diameter_m * rho) * 0.00000111051 * (3355000 * diameter_m * diameter_m * freq * rho + 6702921 * viscosity);
+  velocity = 1.0f / (diameter_m * rho) * 0.00000111051f * (3355000.0f * diameter_m * diameter_m * freq * rho + 6702921.0f * viscosity);
 
   /* Next: calculate flow rate from velocity */
-  flow_rate = velocity * 3.28084 * pid_in * pid_in * 2.45; /* units of gallons per minute */
+  flow_rate = velocity * 3.28084f * pid_in * pid_in * 2.45f; /* units of gallons per minute */
 
   *return_frequency = freq;
   return flow_rate;
 }
 
-void output_420(double flow_rate)
+void output_420(float flow_rate)
 {
   pwm3.pulsewidth(flow_rate/MAX_FLOW_RATE);
 }
 
-void output_pulse(double frequency)
+void output_pulse(float frequency)
 {
   pwm4.period_us((int) 1/frequency);
 }
 
-void output_LCD(double flow_rate)
+void output_LCD(float flow_rate)
 {
   lcd_out.write((int) flow_rate);
+}
+
+float read_temperature() {
+  return 300.0f;
 }
