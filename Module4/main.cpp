@@ -47,6 +47,7 @@
 #define V_TEMP25                (716U)      /*! Typical VTEMP25 in mV */
 #define M                       (1620U)     /*! Typical slope: (mV x 1000)/oC */
 #define STANDARD_TEMP           (25)
+#define MAX_FLOW_RATE           (0U)
 
 extern volatile uint16_t SwTimerIsrCounter;
 
@@ -68,6 +69,11 @@ DigitalOut blueLED(LED_BLUE);
 AnalogIn vrefl_adc(PTB0);
 AnalogIn vortex_adc(PTB1);
 AnalogIn temp_adc(PTB2);   
+
+PwmOut pwm3(PTE30);
+PwmOut pwm4(PTE31);
+
+SPI lcd_out(PTC4, PTC5, PTC6, PTC7); // use 1 MHz, mode 0 SPI
 
 Serial pc(USBTX, USBRX);
 
@@ -178,9 +184,9 @@ int main()
     //      __enable_interrupts();
     //      __clear_watchdog_timer();
 
-//    serial();            // Polls the serial port
-//    chk_UART_msg();     // checks for a serial port message received
-//    monitor();           // Sends serial port output messages depending
+    serial();            // Polls the serial port
+    chk_UART_msg();     // checks for a serial port message received
+    monitor();           // Sends serial port output messages depending
     //  on commands received and display mode
 
     /****************      ECEN 5803 add code as indicated   ***************/
@@ -251,15 +257,15 @@ double calculate_flow(uint16_t measurement)
 
 void output_420(double flow_rate)
 {
-
+  pwm3.pulsewidth(flow_rate/MAX_FLOW_RATE);
 }
 
-void output_pulse(double flow_rate)
+void output_pulse(double frequency)
 {
-
+  pwm4.period_us((int) 1/frequency);
 }
 
 void output_LCD(double flow_rate)
 {
-
+  lcd_out.write((int) flow_rate);
 }
