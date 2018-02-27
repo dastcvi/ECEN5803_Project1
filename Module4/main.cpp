@@ -50,6 +50,13 @@
 
 extern volatile uint16_t SwTimerIsrCounter;
 
+/* Superloop function prototypes */
+uint16_t read_ADC();
+double calculate_flow(uint16_t);
+void output_420(double);
+void output_pulse(double);
+void output_LCD(double);
+
 Ticker tick;             //  Creates a timer interrupt using mbed methods
 /****************      ECEN 5803 add code as indicated   ***************/
 // Add code to control red, green and blue LEDs here
@@ -58,14 +65,70 @@ DigitalOut greenLED(LED_GREEN);
 DigitalOut redLED(LED_RED);
 DigitalOut blueLED(LED_BLUE);
 
+AnalogIn vrefl_adc(PTB0);
+AnalogIn vortex_adc(PTB1);
+AnalogIn temp_adc(PTB2);   
+
 Serial pc(USBTX, USBRX);
 
-/* Superloop function prototypes */
-uint16_t read_ADC();
-double calculate_flow(uint16_t);
-void output_420(double);
-void output_pulse(double);
-void output_LCD(double);
+bool adc_setup()
+{
+    ADC0->CFG1   &= ~ADC_CFG1_ADLPC_MASK;  // no low power
+    ADC0->CFG1   &= ~ADC_CFG1_ADIV_MASK;   // clock divider = 1
+    ADC0->CFG1   |= ADC_CFG1_ADLSMP_MASK;  // long sample time
+    ADC0->CFG1   &= ~ADC_CFG1_ADICLK_MASK; // clock source = bus clock
+    ADC0->SC3    |= ADC_SC3_ADCO_MASK;     // enable continuous conversions
+    ADC0->SC1[0] &= ~ADC_SC1_DIFF_MASK;    // single ended conversion
+    
+    // channel-specific (REFSL)
+//    ADC0->CFG1   &= ~ADC_CFG1_MODE_MASK;   // 8-bit, single-ended
+//    ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
+//    ADC0->SC1[0] |= 0b11110;               // select REFSL as input
+    
+    // channel-specific (vortex)
+    ADC0->CFG1   |= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
+    ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
+    ADC0->SC1[0] |= 0b00001;               // select DAD1 as input
+    
+    // channel-specific (temperature)
+//    ADC0->CFG1   &= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
+//    ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
+//    ADC0->SC1[0] |= 0b11010;               // select Temp Sensor as input
+    
+    // start ADC calibration
+    ADC0->SC2 &= ~ADC_SC2_ADTRG_MASK; // ensure software trigger is set
+    ADC0->SC3 |= ADC_SC3_CAL_MASK;    // start the calibration
+    while (!((ADC0->SC1[0] & ADC_SC1_COCO_MASK) >> ADC_SC1_COCO_SHIFT)); // wait for completion
+    if ((ADC0->SC3 &  ADC_SC3_CALF_MASK) >> ADC_SC3_CALF_SHIFT) {
+        return false;
+    }
+
+    // get plus-side calibration result
+    uint16_t cal_result = 0;
+    cal_result += ADC0->CLP0;
+    cal_result += ADC0->CLP1;
+    cal_result += ADC0->CLP2;
+    cal_result += ADC0->CLP3;
+    cal_result += ADC0->CLP4;
+    cal_result += ADC0->CLPS;
+    cal_result /= 2;
+    cal_result |= 0x8000;
+    ADC0->PG = cal_result;
+
+    // get minus-side calibration result
+    cal_result = 0;
+    cal_result += ADC0->CLM0;
+    cal_result += ADC0->CLM1;
+    cal_result += ADC0->CLM2;
+    cal_result += ADC0->CLM3;
+    cal_result += ADC0->CLM4;
+    cal_result += ADC0->CLMS;
+    cal_result /= 2;
+    cal_result |= 0x8000;
+    ADC0->MG= cal_result;
+
+    return true;
+}
 
 void flip()
 {
@@ -115,9 +178,9 @@ int main()
     //      __enable_interrupts();
     //      __clear_watchdog_timer();
 
-    serial();            // Polls the serial port
-    chk_UART_msg();     // checks for a serial port message received
-    monitor();           // Sends serial port output messages depending
+//    serial();            // Polls the serial port
+//    chk_UART_msg();     // checks for a serial port message received
+//    monitor();           // Sends serial port output messages depending
     //  on commands received and display mode
 
     /****************      ECEN 5803 add code as indicated   ***************/
