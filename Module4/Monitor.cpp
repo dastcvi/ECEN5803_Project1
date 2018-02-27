@@ -72,6 +72,12 @@ static uint32_t r13 = 0;
 static uint32_t r14 = 0;
 static uint32_t r15 = 0;
 
+/* Flow meter variables from main.cpp */
+extern float frequency;
+extern float flow_rate;
+extern float velocity;
+extern float temperature;
+
 void set_display_mode(void)
 {
   UART_direct_msg_put("\r\nSelect Mode");
@@ -257,12 +263,27 @@ void monitor(void)
       // ECEN 5803 add code as indicated
       //  add flow data output here, use UART_hex_put or similar for
       // numbers
+      UART_msg_put(itoa((uint16_t)flow_rate));
+      UART_msg_put(".");
+      UART_msg_put(itoa((uint16_t)(100.0f*(flow_rate - (uint16_t(flow_rate))))));
       UART_msg_put("\r\nTemp: ");
       //  add flow data output here, use UART_hex_put or similar for
       // numbers
+      UART_msg_put(itoa((uint16_t)temperature));
+      UART_msg_put(".");
+      UART_msg_put(itoa((uint16_t)(100.0f*(temperature - (uint16_t(temperature))))));
       UART_msg_put("\r\nFreq: ");
       //  add flow data output here, use UART_hex_put or similar for
       // numbers
+      UART_msg_put(itoa((uint16_t)frequency));
+      UART_msg_put(".");
+      UART_msg_put(itoa((uint16_t)(100.0f*(frequency - (uint16_t(frequency))))));
+      UART_msg_put("\r\nVelocity: ");
+      //  add flow data output here, use UART_hex_put or similar for
+      // numbers
+      UART_msg_put(itoa((uint16_t)velocity));
+      UART_msg_put(".");
+      UART_msg_put(itoa((uint16_t)(100.0f*(velocity - (uint16_t(velocity))))));
       display_flag = 0;
     }
   }
@@ -274,14 +295,27 @@ void monitor(void)
       // ECEN 5803 add code as indicated
       //  add flow data output here, use UART_hex_put or similar for
       // numbers
+      UART_msg_put(itoa((uint16_t)flow_rate));
+      UART_msg_put(".");
+      UART_msg_put(itoa((uint16_t)(100.0f*(flow_rate - (uint16_t(flow_rate))))));
       UART_msg_put("\r\nTemp: ");
       //  add flow data output here, use UART_hex_put or similar for
       // numbers
+      UART_msg_put(itoa((uint16_t)temperature));
+      UART_msg_put(".");
+      UART_msg_put(itoa((uint16_t)(100.0f*(temperature - (uint16_t(temperature))))));
       UART_msg_put("\r\nFreq: ");
       //  add flow data output here, use UART_hex_put or similar for
       // numbers
-
-
+      UART_msg_put(itoa((uint16_t)frequency));
+      UART_msg_put(".");
+      UART_msg_put(itoa((uint16_t)(100.0f*(frequency - (uint16_t(frequency))))));
+      UART_msg_put("\r\nVelocity: ");
+      //  add flow data output here, use UART_hex_put or similar for
+      // numbers
+      UART_msg_put(itoa((uint16_t)velocity));
+      UART_msg_put(".");
+      UART_msg_put(itoa((uint16_t)(100.0f*(velocity - (uint16_t(velocity))))));
 
       // clear flag to ISR
       display_flag = 0;
@@ -332,8 +366,6 @@ void monitor(void)
       }
       display_flag = 0;
     }
-    break;
-  case FLOWRATE:
     break;
   default: {
     UART_msg_put("Mode Error");
