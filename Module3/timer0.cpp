@@ -122,7 +122,9 @@ extern "C" {
 /*     Start of Code             */
 /*********************************/
 // I. Entry and Timer State Calculation
-
+ /**
+ * @brief 10 kHz timer ISR
+ */
 void timer0(void)
  {
  

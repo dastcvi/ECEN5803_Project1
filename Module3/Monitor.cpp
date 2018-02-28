@@ -89,6 +89,11 @@ void set_display_mode(void)
 /// \fn void chk_UART_msg(void)
 ///
 //*****************************************************************************/
+ /**
+ * @brief check for UART message function
+ *
+ * This function checks for a valid UART message
+ */
 void chk_UART_msg(void)
 {
   UCHAR j;
@@ -140,6 +145,11 @@ void chk_UART_msg(void)
 ///  \fn void UART_msg_process(void)
 ///UART Input Message Processing
 //*****************************************************************************/
+ /**
+ * @brief process UART message
+ *
+ * This message processes UART messages that have been received
+ */
 void UART_msg_process(void)
 {
   UCHAR chr,err=0;
@@ -233,6 +243,12 @@ UCHAR is_hex(UCHAR c)
 /*******************************************************************************
  *   \fn  DEBUG and DIAGNOSTIC Mode UART Operation
  *******************************************************************************/
+ /**
+ * @brief run the serial monitor
+ *
+ * This function runs the serial monitor which outputs different data depending
+ * upon the selected mode.
+ */
 void monitor(void)
 {
 

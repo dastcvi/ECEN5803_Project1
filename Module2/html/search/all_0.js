@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['getabsolutedistance',['getAbsoluteDistance',['../classTSIAnalogSlider.html#a9600bda1c2ceda17005f8a4dc0eca6c8',1,'TSIAnalogSlider']]],
+  ['getabsoluteposition',['getAbsolutePosition',['../classTSIAnalogSlider.html#ab59fd60a46d2bb50f490118e3e1303ac',1,'TSIAnalogSlider']]],
+  ['getaccallaxis',['getAccAllAxis',['../classMMA8451Q.html#a6d7892d095e4f697b6f50ebc3d4b4cfc',1,'MMA8451Q']]],
+  ['getaccx',['getAccX',['../classMMA8451Q.html#a9226a2f00edef47be520ecca28d6a425',1,'MMA8451Q']]],
+  ['getaccy',['getAccY',['../classMMA8451Q.html#a365e88d07f16faa9da4183f34055b4a5',1,'MMA8451Q']]],
+  ['getaccz',['getAccZ',['../classMMA8451Q.html#afb63783e2e4d3af92229dd0311905132',1,'MMA8451Q']]],
+  ['getbaseline',['getBaseline',['../classTSIElectrode.html#aab2878b3e38dd9a6b68fd697340e5c67',1,'TSIElectrode']]],
+  ['getchannel',['getChannel',['../classTSIElectrode.html#abe3608e01af22b12cfa5ec44b511aee3',1,'TSIElectrode']]],
+  ['getcurrentelectrode',['getCurrentElectrode',['../classTSIAnalogSlider.html#a8bb6a903053b36dc48406b2a40b430f9',1,'TSIAnalogSlider']]],
+  ['getdelta',['getDelta',['../classTSIElectrode.html#a90af2e96fc3a590de277ce65896ed05d',1,'TSIElectrode']]],
+  ['getinstance',['getInstance',['../classTSIAnalogSlider.html#a5377fd3c6516e52d0a871fefe9c6135d',1,'TSIAnalogSlider']]],
+  ['getnextelectrode',['getNextElectrode',['../classTSIAnalogSlider.html#ae6d24bf30c95c66c37f8b36d51ce5c64',1,'TSIAnalogSlider']]],
+  ['getsignal',['getSignal',['../classTSIElectrode.html#af6f0b27a7191732a5ff80127d2d5abad',1,'TSIElectrode']]],
+  ['getthreshold',['getThreshold',['../classTSIElectrode.html#a46bb496c2d6f0970295495814a957423',1,'TSIElectrode']]],
+  ['gettsichannel',['getTSIChannel',['../classTSIElectrode.html#a8ab372b0aab3b293926c2b2d9b2bc335',1,'TSIElectrode']]],
+  ['getwhoami',['getWhoAmI',['../classMMA8451Q.html#adbf87f413cfa95e88d49990b2a4af6d4',1,'MMA8451Q']]]
+];

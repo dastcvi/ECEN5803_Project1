@@ -1,0 +1,158 @@
+\hypertarget{main_8cpp}{}\section{main.\+cpp File Reference}
+\label{main_8cpp}\index{main.\+cpp@{main.\+cpp}}
+{\ttfamily \#include \char`\"{}shared.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for main.\+cpp\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+A\+IN}\hypertarget{main_8cpp_a34b04bd23b07b485921a728ad0805ac4}{}\label{main_8cpp_a34b04bd23b07b485921a728ad0805ac4}
+
+\item 
+\#define {\bfseries A\+D\+C\+\_\+0}~(0\+U)\hypertarget{main_8cpp_a5cbcaa568e20fcd4cc9325927d370860}{}\label{main_8cpp_a5cbcaa568e20fcd4cc9325927d370860}
+
+\item 
+\#define {\bfseries C\+H\+A\+N\+N\+E\+L\+\_\+0}~(0\+U)\hypertarget{main_8cpp_a3a68e0275a8f51f44fa1ab564d23b0f0}{}\label{main_8cpp_a3a68e0275a8f51f44fa1ab564d23b0f0}
+
+\item 
+\#define {\bfseries C\+H\+A\+N\+N\+E\+L\+\_\+1}~(1\+U)\hypertarget{main_8cpp_a0163025498d90e61500d3aa30b422efa}{}\label{main_8cpp_a0163025498d90e61500d3aa30b422efa}
+
+\item 
+\#define {\bfseries C\+H\+A\+N\+N\+E\+L\+\_\+2}~(2\+U)\hypertarget{main_8cpp_aed0f3200ae4286984ee855977dfe55c7}{}\label{main_8cpp_aed0f3200ae4286984ee855977dfe55c7}
+
+\item 
+\#define {\bfseries L\+E\+D\+\_\+\+ON}~(0\+U)\hypertarget{main_8cpp_af2e697ac60e05813d45ea2c9c9e79c25}{}\label{main_8cpp_af2e697ac60e05813d45ea2c9c9e79c25}
+
+\item 
+\#define {\bfseries L\+E\+D\+\_\+\+O\+FF}~(1\+U)\hypertarget{main_8cpp_a80700bb63bd56ebabbb4728aa433fd29}{}\label{main_8cpp_a80700bb63bd56ebabbb4728aa433fd29}
+
+\item 
+\#define {\bfseries A\+D\+C\+R\+\_\+\+V\+DD}~(65535\+U)    /$\ast$! Maximum value when use 16b resolution $\ast$/\hypertarget{main_8cpp_ad1cb1210a1062abeaffc2bfb142a0fef}{}\label{main_8cpp_ad1cb1210a1062abeaffc2bfb142a0fef}
+
+\item 
+\#define {\bfseries V\+\_\+\+BG}~(1000\+U)     /$\ast$! B\+A\+N\+D\+G\+A\+P voltage in m\+V (trim to 1.\+0\+V) $\ast$/\hypertarget{main_8cpp_add266b4695ff28798e98c58017a068da}{}\label{main_8cpp_add266b4695ff28798e98c58017a068da}
+
+\item 
+\#define {\bfseries V\+\_\+\+T\+E\+M\+P25}~(716\+U)      /$\ast$! Typical V\+T\+E\+M\+P25 in m\+V $\ast$/\hypertarget{main_8cpp_a0411b168217e237bf124c69d80cb34da}{}\label{main_8cpp_a0411b168217e237bf124c69d80cb34da}
+
+\item 
+\#define {\bfseries M}~(1620\+U)     /$\ast$! Typical slope\+: (m\+V x 1000)/o\+C $\ast$/\hypertarget{main_8cpp_a52037c938e3c1b126c6277da5ca689d0}{}\label{main_8cpp_a52037c938e3c1b126c6277da5ca689d0}
+
+\item 
+\#define {\bfseries S\+T\+A\+N\+D\+A\+R\+D\+\_\+\+T\+E\+MP}~(25)\hypertarget{main_8cpp_a881d8ee2db088be628ec58d76047b950}{}\label{main_8cpp_a881d8ee2db088be628ec58d76047b950}
+
+\item 
+\#define {\bfseries M\+A\+X\+\_\+\+F\+L\+O\+W\+\_\+\+R\+A\+TE}~(40195\+U)\hypertarget{main_8cpp_aa9ff98ec5835a6ad475e7158319727bf}{}\label{main_8cpp_aa9ff98ec5835a6ad475e7158319727bf}
+
+\item 
+\#define {\bfseries U\+I\+N\+T16\+\_\+\+M\+AX}~65535\hypertarget{main_8cpp_a3ea490c9b3617d4479bd80ef93cd5602}{}\label{main_8cpp_a3ea490c9b3617d4479bd80ef93cd5602}
+
+\item 
+\#define {\bfseries U\+I\+N\+T16\+\_\+\+H\+A\+LF}~(U\+I\+N\+T16\+\_\+\+M\+AX / 2)\hypertarget{main_8cpp_a4ee26ab958ba10df1cfc13218bafbd84}{}\label{main_8cpp_a4ee26ab958ba10df1cfc13218bafbd84}
+
+\item 
+\#define {\bfseries O\+F\+F\+S\+E\+T\+\_\+\+Z\+E\+RO}~32767\hypertarget{main_8cpp_acd3c98b157ea5605b47aaad20d102b43}{}\label{main_8cpp_acd3c98b157ea5605b47aaad20d102b43}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \hyperlink{main_8cpp_a4cf455629192d40cd546241f094b37f7}{read\+\_\+\+A\+DC} ()\hypertarget{main_8cpp_a4cf455629192d40cd546241f094b37f7}{}\label{main_8cpp_a4cf455629192d40cd546241f094b37f7}
+
+\begin{DoxyCompactList}\small\item\em function reads the A\+DC \end{DoxyCompactList}\item 
+void \hyperlink{main_8cpp_a9745682ae6427a1bb3ec32c263778ba3}{calculate\+\_\+flow} (uint16\+\_\+t measurement)\hypertarget{main_8cpp_a9745682ae6427a1bb3ec32c263778ba3}{}\label{main_8cpp_a9745682ae6427a1bb3ec32c263778ba3}
+
+\begin{DoxyCompactList}\small\item\em function calculates the flow \end{DoxyCompactList}\item 
+void \hyperlink{main_8cpp_aa12a5fc57724c2a56d032853dd9ce082}{output\+\_\+420} ()\hypertarget{main_8cpp_aa12a5fc57724c2a56d032853dd9ce082}{}\label{main_8cpp_aa12a5fc57724c2a56d032853dd9ce082}
+
+\begin{DoxyCompactList}\small\item\em function outputs to the 4-\/20 mA loop with pulse width proportional to flow rate \end{DoxyCompactList}\item 
+void \hyperlink{main_8cpp_acfc61c9589fe97777f276667317eb684}{output\+\_\+pulse} ()\hypertarget{main_8cpp_acfc61c9589fe97777f276667317eb684}{}\label{main_8cpp_acfc61c9589fe97777f276667317eb684}
+
+\begin{DoxyCompactList}\small\item\em function outputs pulses at rate proportional to frequency \end{DoxyCompactList}\item 
+void {\bfseries output\+\_\+\+L\+CD} ()\hypertarget{main_8cpp_ae1dae2133bce9fe424f7f3120908881c}{}\label{main_8cpp_ae1dae2133bce9fe424f7f3120908881c}
+
+\item 
+void {\bfseries read\+\_\+temperature} ()\hypertarget{main_8cpp_ab18415610e1c9709ae98f052bf8fe9b8}{}\label{main_8cpp_ab18415610e1c9709ae98f052bf8fe9b8}
+
+\item 
+Digital\+Out {\bfseries green\+L\+ED} (L\+E\+D\+\_\+\+G\+R\+E\+EN)\hypertarget{main_8cpp_aa5e13a31fefb89d68dd999f7badd48fb}{}\label{main_8cpp_aa5e13a31fefb89d68dd999f7badd48fb}
+
+\item 
+Digital\+Out {\bfseries red\+L\+ED} (L\+E\+D\+\_\+\+R\+ED)\hypertarget{main_8cpp_ad2a2204f540156dbb2262c9fd20a1cfb}{}\label{main_8cpp_ad2a2204f540156dbb2262c9fd20a1cfb}
+
+\item 
+Digital\+Out {\bfseries blue\+L\+ED} (L\+E\+D\+\_\+\+B\+L\+UE)\hypertarget{main_8cpp_ade2796a2201022bcda4055732fcf7a3f}{}\label{main_8cpp_ade2796a2201022bcda4055732fcf7a3f}
+
+\item 
+Analog\+In {\bfseries vrefl\+\_\+adc} (P\+T\+B0)\hypertarget{main_8cpp_a63ad127e5ad2d936bcbdf5e46072837e}{}\label{main_8cpp_a63ad127e5ad2d936bcbdf5e46072837e}
+
+\item 
+Analog\+In {\bfseries vortex\+\_\+adc} (P\+T\+B1)\hypertarget{main_8cpp_a362dda612a25272f6a97f2134e597681}{}\label{main_8cpp_a362dda612a25272f6a97f2134e597681}
+
+\item 
+Analog\+In {\bfseries temp\+\_\+adc} (P\+T\+B2)\hypertarget{main_8cpp_adfacd3b95bad38cded0569fe43d496cd}{}\label{main_8cpp_adfacd3b95bad38cded0569fe43d496cd}
+
+\item 
+Pwm\+Out {\bfseries pwm3} (P\+T\+E30)\hypertarget{main_8cpp_adf062b10e9e0465c9df60430ef4d27b2}{}\label{main_8cpp_adf062b10e9e0465c9df60430ef4d27b2}
+
+\item 
+Pwm\+Out {\bfseries pwm4} (P\+T\+E31)\hypertarget{main_8cpp_aa60a1614a138b760812a5cce0b859f0c}{}\label{main_8cpp_aa60a1614a138b760812a5cce0b859f0c}
+
+\item 
+S\+PI {\bfseries lcd\+\_\+out} (P\+T\+C4, P\+T\+C5, P\+T\+C6, P\+T\+C7)\hypertarget{main_8cpp_afcf43ba52876dd17f60a8ec059af24fb}{}\label{main_8cpp_afcf43ba52876dd17f60a8ec059af24fb}
+
+\item 
+Serial {\bfseries pc} (U\+S\+B\+TX, U\+S\+B\+RX)\hypertarget{main_8cpp_a81e0624d7e9f10f8f7e52a569ba24753}{}\label{main_8cpp_a81e0624d7e9f10f8f7e52a569ba24753}
+
+\item 
+bool \hyperlink{main_8cpp_a7cfc5cc6e017e1798ad1ba7ad2cfb2ba}{adc\+\_\+setup} ()\hypertarget{main_8cpp_a7cfc5cc6e017e1798ad1ba7ad2cfb2ba}{}\label{main_8cpp_a7cfc5cc6e017e1798ad1ba7ad2cfb2ba}
+
+\begin{DoxyCompactList}\small\item\em function configures the A\+DC \end{DoxyCompactList}\item 
+void {\bfseries flip} ()\hypertarget{main_8cpp_a126cb0362ae2e7935520fb27343bad31}{}\label{main_8cpp_a126cb0362ae2e7935520fb27343bad31}
+
+\item 
+int \hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()\hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+\begin{DoxyCompactList}\small\item\em function runs the super loop \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint16\+\_\+t {\bfseries Sw\+Timer\+Isr\+Counter}\hypertarget{main_8cpp_aeca2f6d177dc8e5ee54061e0acb82822}{}\label{main_8cpp_aeca2f6d177dc8e5ee54061e0acb82822}
+
+\item 
+Ticker {\bfseries tick}\hypertarget{main_8cpp_a25d50c6987a26c14c9f4348f82f20640}{}\label{main_8cpp_a25d50c6987a26c14c9f4348f82f20640}
+
+\item 
+float {\bfseries frequency} = 0.\+0f\hypertarget{main_8cpp_acdfc8898c9e67fbcec81f3b04ae61bd9}{}\label{main_8cpp_acdfc8898c9e67fbcec81f3b04ae61bd9}
+
+\item 
+float {\bfseries flow\+\_\+rate} = 0.\+0f\hypertarget{main_8cpp_ac03c805c3f48efb3f661537e49fdb2e6}{}\label{main_8cpp_ac03c805c3f48efb3f661537e49fdb2e6}
+
+\item 
+float {\bfseries velocity} = 0.\+0f\hypertarget{main_8cpp_ac46e821ae08930cc9e257642e34275a3}{}\label{main_8cpp_ac46e821ae08930cc9e257642e34275a3}
+
+\item 
+float {\bfseries temperature} = 0.\+0f\hypertarget{main_8cpp_afc1d28cfbce795d6ea954ebe725241f5}{}\label{main_8cpp_afc1d28cfbce795d6ea954ebe725241f5}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+
+
+ -- E\+C\+EN 5803 Mastering Embedded System Architecture -- -- Project 1 Module 4 -- -- Microcontroller Firmware -- -- \hyperlink{main_8cpp}{main.\+cpp} -- \subsubsection*{-- -- }
+
+-- \subsubsection*{-- Designed for\+: University of Colorado at Boulder }
+
+-- -- Designed by\+: Tim Scherr \subsubsection*{-- Revised by\+: Matthew Haney and Alex St. Clair }
+
+-- Version\+: 2.\+1 -- Date of current revision\+: 2017-\/09-\/25 -- Target Microcontroller\+: Freescale M\+K\+L25\+Z\+V\+M\+T4 -- Tools used\+: A\+RM mbed compiler -- A\+RM mbed S\+DK \subsubsection*{-- Freescale F\+R\+D\+M-\/\+K\+L25Z Freedom Board }
+
+-- -- Functional Description\+: Main code file generated by mbed, and then \subsubsection*{-- modified to implement a super loop bare metal OS. }
+
+\subsubsection*{-- Copyright (c) 2015, 2016 Tim Scherr All rights reserved. }

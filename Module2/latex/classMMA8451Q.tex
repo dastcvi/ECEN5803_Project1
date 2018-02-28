@@ -1,0 +1,151 @@
+\hypertarget{classMMA8451Q}{}\section{M\+M\+A8451Q Class Reference}
+\label{classMMA8451Q}\index{M\+M\+A8451Q@{M\+M\+A8451Q}}
+
+
+{\ttfamily \#include $<$M\+M\+A8451\+Q.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMMA8451Q_a59430cfeb113615458a2b73fdc7391e9}{M\+M\+A8451Q} (Pin\+Name sda, Pin\+Name scl, int addr)
+\item 
+\hyperlink{classMMA8451Q_add2fade85a24b3c6ae7cc489a04ba009}{$\sim$\+M\+M\+A8451Q} ()
+\item 
+uint8\+\_\+t \hyperlink{classMMA8451Q_adbf87f413cfa95e88d49990b2a4af6d4}{get\+Who\+AmI} ()
+\item 
+float \hyperlink{classMMA8451Q_a9226a2f00edef47be520ecca28d6a425}{get\+AccX} ()
+\item 
+float \hyperlink{classMMA8451Q_a365e88d07f16faa9da4183f34055b4a5}{get\+AccY} ()
+\item 
+float \hyperlink{classMMA8451Q_afb63783e2e4d3af92229dd0311905132}{get\+AccZ} ()
+\item 
+void \hyperlink{classMMA8451Q_a6d7892d095e4f697b6f50ebc3d4b4cfc}{get\+Acc\+All\+Axis} (float $\ast$res)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classMMA8451Q}{M\+M\+A8451Q} accelerometer example
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include "mbed.h"}
+\textcolor{preprocessor}{#include "MMA8451Q.h"}
+
+\textcolor{preprocessor}{#define MMA8451\_I2C\_ADDRESS (0x1d<<1)}
+
+\textcolor{keywordtype}{int} \hyperlink{module2_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main}(\textcolor{keywordtype}{void}) \{
+
+\hyperlink{classMMA8451Q}{MMA8451Q} acc(P\_E25, P\_E24, MMA8451\_I2C\_ADDRESS);
+PwmOut rled(LED\_RED);
+PwmOut gled(LED\_GREEN);
+PwmOut bled(LED\_BLUE);
+
+    \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{       
+        rled = 1.0 - abs(acc.getAccX());
+        gled = 1.0 - abs(acc.getAccY());
+        bled = 1.0 - abs(acc.getAccZ());
+        wait(0.1);
+    \}
+\}
+\end{DoxyCode}
+ 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{M\+M\+A8451Q@{M\+M\+A8451Q}!M\+M\+A8451Q@{M\+M\+A8451Q}}
+\index{M\+M\+A8451Q@{M\+M\+A8451Q}!M\+M\+A8451Q@{M\+M\+A8451Q}}
+\subsubsection[{\texorpdfstring{M\+M\+A8451\+Q(\+Pin\+Name sda, Pin\+Name scl, int addr)}{MMA8451Q(PinName sda, PinName scl, int addr)}}]{\setlength{\rightskip}{0pt plus 5cm}M\+M\+A8451\+Q\+::\+M\+M\+A8451Q (
+\begin{DoxyParamCaption}
+\item[{Pin\+Name}]{sda, }
+\item[{Pin\+Name}]{scl, }
+\item[{int}]{addr}
+\end{DoxyParamCaption}
+)}\hypertarget{classMMA8451Q_a59430cfeb113615458a2b73fdc7391e9}{}\label{classMMA8451Q_a59430cfeb113615458a2b73fdc7391e9}
+\hyperlink{classMMA8451Q}{M\+M\+A8451Q} constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em sda} & S\+DA pin \\
+\hline
+{\em sdl} & S\+CL pin \\
+\hline
+{\em addr} & addr of the I2C peripheral \\
+\hline
+\end{DoxyParams}
+\index{M\+M\+A8451Q@{M\+M\+A8451Q}!````~M\+M\+A8451Q@{$\sim$\+M\+M\+A8451Q}}
+\index{````~M\+M\+A8451Q@{$\sim$\+M\+M\+A8451Q}!M\+M\+A8451Q@{M\+M\+A8451Q}}
+\subsubsection[{\texorpdfstring{$\sim$\+M\+M\+A8451\+Q()}{~MMA8451Q()}}]{\setlength{\rightskip}{0pt plus 5cm}M\+M\+A8451\+Q\+::$\sim$\+M\+M\+A8451Q (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMMA8451Q_add2fade85a24b3c6ae7cc489a04ba009}{}\label{classMMA8451Q_add2fade85a24b3c6ae7cc489a04ba009}
+\hyperlink{classMMA8451Q}{M\+M\+A8451Q} destructor 
+
+\subsection{Member Function Documentation}
+\index{M\+M\+A8451Q@{M\+M\+A8451Q}!get\+Acc\+All\+Axis@{get\+Acc\+All\+Axis}}
+\index{get\+Acc\+All\+Axis@{get\+Acc\+All\+Axis}!M\+M\+A8451Q@{M\+M\+A8451Q}}
+\subsubsection[{\texorpdfstring{get\+Acc\+All\+Axis(float $\ast$res)}{getAccAllAxis(float *res)}}]{\setlength{\rightskip}{0pt plus 5cm}void M\+M\+A8451\+Q\+::get\+Acc\+All\+Axis (
+\begin{DoxyParamCaption}
+\item[{float $\ast$}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{classMMA8451Q_a6d7892d095e4f697b6f50ebc3d4b4cfc}{}\label{classMMA8451Q_a6d7892d095e4f697b6f50ebc3d4b4cfc}
+Get X\+YZ axis acceleration
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & array where acceleration data will be stored \\
+\hline
+\end{DoxyParams}
+\index{M\+M\+A8451Q@{M\+M\+A8451Q}!get\+AccX@{get\+AccX}}
+\index{get\+AccX@{get\+AccX}!M\+M\+A8451Q@{M\+M\+A8451Q}}
+\subsubsection[{\texorpdfstring{get\+Acc\+X()}{getAccX()}}]{\setlength{\rightskip}{0pt plus 5cm}float M\+M\+A8451\+Q\+::get\+AccX (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMMA8451Q_a9226a2f00edef47be520ecca28d6a425}{}\label{classMMA8451Q_a9226a2f00edef47be520ecca28d6a425}
+Get X axis acceleration
+
+\begin{DoxyReturn}{Returns}
+X axis acceleration 
+\end{DoxyReturn}
+\index{M\+M\+A8451Q@{M\+M\+A8451Q}!get\+AccY@{get\+AccY}}
+\index{get\+AccY@{get\+AccY}!M\+M\+A8451Q@{M\+M\+A8451Q}}
+\subsubsection[{\texorpdfstring{get\+Acc\+Y()}{getAccY()}}]{\setlength{\rightskip}{0pt plus 5cm}float M\+M\+A8451\+Q\+::get\+AccY (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMMA8451Q_a365e88d07f16faa9da4183f34055b4a5}{}\label{classMMA8451Q_a365e88d07f16faa9da4183f34055b4a5}
+Get Y axis acceleration
+
+\begin{DoxyReturn}{Returns}
+Y axis acceleration 
+\end{DoxyReturn}
+\index{M\+M\+A8451Q@{M\+M\+A8451Q}!get\+AccZ@{get\+AccZ}}
+\index{get\+AccZ@{get\+AccZ}!M\+M\+A8451Q@{M\+M\+A8451Q}}
+\subsubsection[{\texorpdfstring{get\+Acc\+Z()}{getAccZ()}}]{\setlength{\rightskip}{0pt plus 5cm}float M\+M\+A8451\+Q\+::get\+AccZ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMMA8451Q_afb63783e2e4d3af92229dd0311905132}{}\label{classMMA8451Q_afb63783e2e4d3af92229dd0311905132}
+Get Z axis acceleration
+
+\begin{DoxyReturn}{Returns}
+Z axis acceleration 
+\end{DoxyReturn}
+\index{M\+M\+A8451Q@{M\+M\+A8451Q}!get\+Who\+AmI@{get\+Who\+AmI}}
+\index{get\+Who\+AmI@{get\+Who\+AmI}!M\+M\+A8451Q@{M\+M\+A8451Q}}
+\subsubsection[{\texorpdfstring{get\+Who\+Am\+I()}{getWhoAmI()}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t M\+M\+A8451\+Q\+::get\+Who\+AmI (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMMA8451Q_adbf87f413cfa95e88d49990b2a4af6d4}{}\label{classMMA8451Q_adbf87f413cfa95e88d49990b2a4af6d4}
+Get the value of the W\+H\+O\+\_\+\+A\+M\+\_\+I register
+
+\begin{DoxyReturn}{Returns}
+W\+H\+O\+\_\+\+A\+M\+\_\+I value 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+M\+M\+A8451\+Q.\+h\item 
+M\+M\+A8451\+Q.\+cpp\end{DoxyCompactItemize}

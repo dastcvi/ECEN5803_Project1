@@ -14,6 +14,20 @@
 #include "MMA8451Q.h"
 #include "tsi_sensor.h"
 
+/*----------------------------------------------------------------------------
+ MAIN function
+ *----------------------------------------------------------------------------*/
+ /**
+ * @brief Main function
+ *
+ * The main function initializes and runs the control of the LEDs based on
+ * accelerometer readings.
+ *
+ * Axis mapping:
+ * x: red
+ * y: blue
+ * z: green
+ */
 int main(void)
 {
   #ifdef DEBUG

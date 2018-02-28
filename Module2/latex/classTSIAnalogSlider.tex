@@ -1,0 +1,150 @@
+\hypertarget{classTSIAnalogSlider}{}\section{T\+S\+I\+Analog\+Slider Class Reference}
+\label{classTSIAnalogSlider}\index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+
+
+{\ttfamily \#include $<$tsi\+\_\+sensor.\+h$>$}
+
+
+
+Collaboration diagram for T\+S\+I\+Analog\+Slider\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTSIAnalogSlider_aa7c73012cb715e5a8cec98a045144cd5}{T\+S\+I\+Analog\+Slider} (Pin\+Name elec0, Pin\+Name elec1, uint32\+\_\+t range)
+\item 
+\hyperlink{classTSIAnalogSlider_a49ba52acddfca420f88d3b5f8139a479}{T\+S\+I\+Analog\+Slider} (uint32\+\_\+t elec0, uint32\+\_\+t elec1, uint32\+\_\+t range)
+\item 
+float \hyperlink{classTSIAnalogSlider_ac0812dc15ed30773aa7781b69e6ce3a1}{read\+Percentage} ()
+\item 
+uint32\+\_\+t \hyperlink{classTSIAnalogSlider_a84b766f99eff19d34794b35d36bad9ce}{read\+Distance} ()
+\item 
+\hyperlink{classTSIElectrode}{T\+S\+I\+Electrode} $\ast$ \hyperlink{classTSIAnalogSlider_a8bb6a903053b36dc48406b2a40b430f9}{get\+Current\+Electrode} ()
+\item 
+void \hyperlink{classTSIAnalogSlider_ae240061e19ff1cf2edf3fbac1ad692d9}{set\+Current\+Electrode} (\hyperlink{classTSIElectrode}{T\+S\+I\+Electrode} $\ast$elec)
+\item 
+\hyperlink{classTSIElectrode}{T\+S\+I\+Electrode} $\ast$ \hyperlink{classTSIAnalogSlider_ae6d24bf30c95c66c37f8b36d51ce5c64}{get\+Next\+Electrode} (\hyperlink{classTSIElectrode}{T\+S\+I\+Electrode} $\ast$electrode)
+\item 
+uint32\+\_\+t \hyperlink{classTSIAnalogSlider_a9600bda1c2ceda17005f8a4dc0eca6c8}{get\+Absolute\+Distance} ()
+\item 
+uint32\+\_\+t \hyperlink{classTSIAnalogSlider_ab59fd60a46d2bb50f490118e3e1303ac}{get\+Absolute\+Position} ()
+\item 
+void \hyperlink{classTSIAnalogSlider_ac80a348b46988a493951a6e3a6116ec7}{set\+Scan} (uint32\+\_\+t scan)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classTSIAnalogSlider}{T\+S\+I\+Analog\+Slider} $\ast$ \hyperlink{classTSIAnalogSlider_a5377fd3c6516e52d0a871fefe9c6135d}{get\+Instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classTSIAnalogSlider}{T\+S\+I\+Analog\+Slider} $\ast$ {\bfseries \+\_\+instance}\hypertarget{classTSIAnalogSlider_a15e95d4f85e3dd1795011d7fe66ca002}{}\label{classTSIAnalogSlider_a15e95d4f85e3dd1795011d7fe66ca002}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Analog slider which consists of two electrodes. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{T\+S\+I\+Analog\+Slider(\+Pin\+Name elec0, Pin\+Name elec1, uint32\+\_\+t range)}{TSIAnalogSlider(PinName elec0, PinName elec1, uint32_t range)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+S\+I\+Analog\+Slider\+::\+T\+S\+I\+Analog\+Slider (
+\begin{DoxyParamCaption}
+\item[{Pin\+Name}]{elec0, }
+\item[{Pin\+Name}]{elec1, }
+\item[{uint32\+\_\+t}]{range}
+\end{DoxyParamCaption}
+)}\hypertarget{classTSIAnalogSlider_aa7c73012cb715e5a8cec98a045144cd5}{}\label{classTSIAnalogSlider_aa7c73012cb715e5a8cec98a045144cd5}
+Initialize the T\+SI Touch Sensor with the given Pin\+Names \index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{T\+S\+I\+Analog\+Slider(uint32\+\_\+t elec0, uint32\+\_\+t elec1, uint32\+\_\+t range)}{TSIAnalogSlider(uint32_t elec0, uint32_t elec1, uint32_t range)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+S\+I\+Analog\+Slider\+::\+T\+S\+I\+Analog\+Slider (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{elec0, }
+\item[{uint32\+\_\+t}]{elec1, }
+\item[{uint32\+\_\+t}]{range}
+\end{DoxyParamCaption}
+)}\hypertarget{classTSIAnalogSlider_a49ba52acddfca420f88d3b5f8139a479}{}\label{classTSIAnalogSlider_a49ba52acddfca420f88d3b5f8139a479}
+Initialize the T\+SI Touch Sensor 
+
+\subsection{Member Function Documentation}
+\index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!get\+Absolute\+Distance@{get\+Absolute\+Distance}}
+\index{get\+Absolute\+Distance@{get\+Absolute\+Distance}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{get\+Absolute\+Distance()}{getAbsoluteDistance()}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t T\+S\+I\+Analog\+Slider\+::get\+Absolute\+Distance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTSIAnalogSlider_a9600bda1c2ceda17005f8a4dc0eca6c8}{}\label{classTSIAnalogSlider_a9600bda1c2ceda17005f8a4dc0eca6c8}
+Return absolute distance position. \index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!get\+Absolute\+Position@{get\+Absolute\+Position}}
+\index{get\+Absolute\+Position@{get\+Absolute\+Position}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{get\+Absolute\+Position()}{getAbsolutePosition()}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t T\+S\+I\+Analog\+Slider\+::get\+Absolute\+Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTSIAnalogSlider_ab59fd60a46d2bb50f490118e3e1303ac}{}\label{classTSIAnalogSlider_ab59fd60a46d2bb50f490118e3e1303ac}
+Return absolute precentage position. \index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!get\+Current\+Electrode@{get\+Current\+Electrode}}
+\index{get\+Current\+Electrode@{get\+Current\+Electrode}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{get\+Current\+Electrode()}{getCurrentElectrode()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+S\+I\+Electrode}$\ast$ T\+S\+I\+Analog\+Slider\+::get\+Current\+Electrode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTSIAnalogSlider_a8bb6a903053b36dc48406b2a40b430f9}{}\label{classTSIAnalogSlider_a8bb6a903053b36dc48406b2a40b430f9}
+Get current electrode. \index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{get\+Instance()}{getInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf T\+S\+I\+Analog\+Slider}$\ast$ T\+S\+I\+Analog\+Slider\+::get\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classTSIAnalogSlider_a5377fd3c6516e52d0a871fefe9c6135d}{}\label{classTSIAnalogSlider_a5377fd3c6516e52d0a871fefe9c6135d}
+Return instance to Analog slider. Used in tsi irq. \index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!get\+Next\+Electrode@{get\+Next\+Electrode}}
+\index{get\+Next\+Electrode@{get\+Next\+Electrode}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{get\+Next\+Electrode(\+T\+S\+I\+Electrode $\ast$electrode)}{getNextElectrode(TSIElectrode *electrode)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+S\+I\+Electrode}$\ast$ T\+S\+I\+Analog\+Slider\+::get\+Next\+Electrode (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+S\+I\+Electrode} $\ast$}]{electrode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTSIAnalogSlider_ae6d24bf30c95c66c37f8b36d51ce5c64}{}\label{classTSIAnalogSlider_ae6d24bf30c95c66c37f8b36d51ce5c64}
+Get next electrode. \index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!read\+Distance@{read\+Distance}}
+\index{read\+Distance@{read\+Distance}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{read\+Distance()}{readDistance()}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t T\+S\+I\+Analog\+Slider\+::read\+Distance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classTSIAnalogSlider_a84b766f99eff19d34794b35d36bad9ce}{}\label{classTSIAnalogSlider_a84b766f99eff19d34794b35d36bad9ce}
+Read Touch Sensor distance
+
+\begin{DoxyReturn}{Returns}
+distance in mm. The value is between \mbox{[}0 ... \+\_\+range\mbox{]} 
+\end{DoxyReturn}
+\index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!read\+Percentage@{read\+Percentage}}
+\index{read\+Percentage@{read\+Percentage}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{read\+Percentage()}{readPercentage()}}]{\setlength{\rightskip}{0pt plus 5cm}float T\+S\+I\+Analog\+Slider\+::read\+Percentage (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classTSIAnalogSlider_ac0812dc15ed30773aa7781b69e6ce3a1}{}\label{classTSIAnalogSlider_ac0812dc15ed30773aa7781b69e6ce3a1}
+Read Touch Sensor percentage value
+
+\begin{DoxyReturn}{Returns}
+percentage value between \mbox{[}0 ... 1\mbox{]} 
+\end{DoxyReturn}
+\index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!set\+Current\+Electrode@{set\+Current\+Electrode}}
+\index{set\+Current\+Electrode@{set\+Current\+Electrode}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{set\+Current\+Electrode(\+T\+S\+I\+Electrode $\ast$elec)}{setCurrentElectrode(TSIElectrode *elec)}}]{\setlength{\rightskip}{0pt plus 5cm}void T\+S\+I\+Analog\+Slider\+::set\+Current\+Electrode (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+S\+I\+Electrode} $\ast$}]{elec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTSIAnalogSlider_ae240061e19ff1cf2edf3fbac1ad692d9}{}\label{classTSIAnalogSlider_ae240061e19ff1cf2edf3fbac1ad692d9}
+Set current electrode which is being measured. \index{T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}!set\+Scan@{set\+Scan}}
+\index{set\+Scan@{set\+Scan}!T\+S\+I\+Analog\+Slider@{T\+S\+I\+Analog\+Slider}}
+\subsubsection[{\texorpdfstring{set\+Scan(uint32\+\_\+t scan)}{setScan(uint32_t scan)}}]{\setlength{\rightskip}{0pt plus 5cm}void T\+S\+I\+Analog\+Slider\+::set\+Scan (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{scan}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classTSIAnalogSlider_ac80a348b46988a493951a6e3a6116ec7}{}\label{classTSIAnalogSlider_ac80a348b46988a493951a6e3a6116ec7}
+Set value to the scan in progress flag. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+tsi\+\_\+sensor.\+h\item 
+tsi\+\_\+sensor.\+cpp\end{DoxyCompactItemize}

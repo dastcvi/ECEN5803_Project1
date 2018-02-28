@@ -48,16 +48,27 @@ DigitalOut blueLED(LED_BLUE);
 
 Serial pc(USBTX, USBRX);
 
+ /**
+ * @brief flips the green LED
+ */
 void flip(void)
 {
 	  greenLED = !greenLED;
 }
 
+ /**
+ * @brief flips the red LED
+ */
 void flip_red(void)
 {
     redLED = !redLED;
 }
 
+ /**
+ * @brief main function
+ *
+ * This function runs the super loop
+ */
 int main() 
 {
 /****************      ECEN 5803 add code as indicated   ***************/

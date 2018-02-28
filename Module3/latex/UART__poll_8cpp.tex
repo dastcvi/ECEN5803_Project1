@@ -1,0 +1,102 @@
+\hypertarget{UART__poll_8cpp}{}\section{U\+A\+R\+T\+\_\+poll.\+cpp File Reference}
+\label{UART__poll_8cpp}\index{U\+A\+R\+T\+\_\+poll.\+cpp@{U\+A\+R\+T\+\_\+poll.\+cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}shared.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}M\+K\+L25\+Z4.\+h\char`\"{}}\\*
+Include dependency graph for U\+A\+R\+T\+\_\+poll.\+cpp\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries O\+E\+RR}~(U\+A\+R\+T0-\/$>$S1 \& U\+A\+R\+T\+L\+P\+\_\+\+S1\+\_\+\+O\+R\+\_\+\+M\+A\+SK)\hypertarget{UART__poll_8cpp_a1c5cc33333d85d8206bf1660e3a85dea}{}\label{UART__poll_8cpp_a1c5cc33333d85d8206bf1660e3a85dea}
+
+\item 
+\#define {\bfseries C\+R\+EN}~(U\+A\+R\+T0-\/$>$C2 \& U\+A\+R\+T\+L\+P\+\_\+\+C2\+\_\+\+R\+E\+\_\+\+M\+A\+SK)\hypertarget{UART__poll_8cpp_a7258e04e4aa884e29a879eb2207c54a5}{}\label{UART__poll_8cpp_a7258e04e4aa884e29a879eb2207c54a5}
+
+\item 
+\#define {\bfseries R\+C\+R\+EG}~U\+A\+R\+T0-\/$>$D\hypertarget{UART__poll_8cpp_a5e2cd83f448b671ef038ac9e3b455bee}{}\label{UART__poll_8cpp_a5e2cd83f448b671ef038ac9e3b455bee}
+
+\item 
+\#define {\bfseries F\+E\+RR}~(U\+A\+R\+T0-\/$>$S1 \& U\+A\+R\+T\+L\+P\+\_\+\+S1\+\_\+\+F\+E\+\_\+\+M\+A\+SK)\hypertarget{UART__poll_8cpp_aafe1f6745f2c0a01f867c686bd69e5c7}{}\label{UART__poll_8cpp_aafe1f6745f2c0a01f867c686bd69e5c7}
+
+\item 
+\#define {\bfseries R\+C\+IF}~(U\+A\+R\+T0-\/$>$S1 \& U\+A\+R\+T\+L\+P\+\_\+\+S1\+\_\+\+R\+D\+R\+F\+\_\+\+M\+A\+SK)\hypertarget{UART__poll_8cpp_af3b639b9a4714f95fa0b25629240906b}{}\label{UART__poll_8cpp_af3b639b9a4714f95fa0b25629240906b}
+
+\item 
+\#define {\bfseries T\+X\+IF}~(U\+A\+R\+T0-\/$>$S1 \& U\+A\+R\+T\+L\+P\+\_\+\+S1\+\_\+\+T\+D\+R\+E\+\_\+\+M\+A\+SK)\hypertarget{UART__poll_8cpp_ac765fb3c77a3c11ddd4e7ac9ea7b4bed}{}\label{UART__poll_8cpp_ac765fb3c77a3c11ddd4e7ac9ea7b4bed}
+
+\item 
+\#define {\bfseries T\+X\+R\+EG}~U\+A\+R\+T0-\/$>$D\hypertarget{UART__poll_8cpp_ae52810cc198abb3279a1f966cb6b51ea}{}\label{UART__poll_8cpp_ae52810cc198abb3279a1f966cb6b51ea}
+
+\item 
+\#define {\bfseries T\+R\+MT}~(U\+A\+R\+T0-\/$>$S1 \& U\+A\+R\+T\+L\+P\+\_\+\+S1\+\_\+\+T\+C\+\_\+\+M\+A\+SK)\hypertarget{UART__poll_8cpp_aa059e0488a9d17fab4152d2844c1aedd}{}\label{UART__poll_8cpp_aa059e0488a9d17fab4152d2844c1aedd}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{UART__poll_8cpp_a44becc30285e88213a624428b2b46cdf}{serial} (void)
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+direct\+\_\+msg\+\_\+put} (const char $\ast$str)\hypertarget{UART__poll_8cpp_ad56b6abae77fe4b4bea9a839bb47d232}{}\label{UART__poll_8cpp_ad56b6abae77fe4b4bea9a839bb47d232}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+put} (U\+C\+H\+AR c)\hypertarget{UART__poll_8cpp_adf7d84d83418afe25297949ce89a7586}{}\label{UART__poll_8cpp_adf7d84d83418afe25297949ce89a7586}
+
+\item 
+U\+C\+H\+AR {\bfseries U\+A\+R\+T\+\_\+get} (void)\hypertarget{UART__poll_8cpp_a6659a2fc6c6bccd0206e0d12798cc4b6}{}\label{UART__poll_8cpp_a6659a2fc6c6bccd0206e0d12798cc4b6}
+
+\item 
+U\+C\+H\+AR {\bfseries U\+A\+R\+T\+\_\+input} (void)\hypertarget{UART__poll_8cpp_af92515bd65cb7df035cfe5b38c4faf40}{}\label{UART__poll_8cpp_af92515bd65cb7df035cfe5b38c4faf40}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+msg\+\_\+put} (const char $\ast$str)\hypertarget{UART__poll_8cpp_ac6ed065c7d51693d1fbf390c19a7fa4b}{}\label{UART__poll_8cpp_ac6ed065c7d51693d1fbf390c19a7fa4b}
+
+\item 
+U\+C\+H\+AR {\bfseries hex\+\_\+to\+\_\+asc} (U\+C\+H\+AR c)\hypertarget{UART__poll_8cpp_a4456109db514cdc9933618f2aa6f1897}{}\label{UART__poll_8cpp_a4456109db514cdc9933618f2aa6f1897}
+
+\item 
+U\+C\+H\+AR {\bfseries asc\+\_\+to\+\_\+hex} (U\+C\+H\+AR c)\hypertarget{UART__poll_8cpp_a44037baadfde4ca1ce659ed1d877a52f}{}\label{UART__poll_8cpp_a44037baadfde4ca1ce659ed1d877a52f}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+hex\+\_\+put} (unsigned char c)\hypertarget{UART__poll_8cpp_a250ea5455b397ab492794e657d8c5bc8}{}\label{UART__poll_8cpp_a250ea5455b397ab492794e657d8c5bc8}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+direct\+\_\+hex\+\_\+put} (unsigned char c)\hypertarget{UART__poll_8cpp_aed4756aead0f5bdb87fb09e7ed2f6b91}{}\label{UART__poll_8cpp_aed4756aead0f5bdb87fb09e7ed2f6b91}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+U\+C\+H\+AR {\bfseries error\+\_\+count} = 0\hypertarget{UART__poll_8cpp_a95430821dc4b95866bfec06c925ce4f0}{}\label{UART__poll_8cpp_a95430821dc4b95866bfec06c925ce4f0}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+
+
+ -- E\+C\+EN 5803 Mastering Embedded System Architecture -- -- Project 1 Module 3 -- -- Microcontroller Firmware -- -- U\+A\+R\+T\+\_\+poll.\+c -- \subsubsection*{-- -- }
+
+-- \subsubsection*{-- Designed for\+: University of Colorado at Boulder }
+
+-- -- Designed by\+: Tim Scherr \subsubsection*{-- Revised by\+: Student\textquotesingle{}s name }
+
+-- Version\+: 2.\+1 -- Date of current revision\+: 2017-\/09-\/20 -- Target Microcontroller\+: Freescale M\+K\+L25\+Z\+V\+M\+T4 -- Tools used\+: A\+RM mbed compiler -- A\+RM mbed S\+DK \subsubsection*{-- Freescale F\+R\+D\+M-\/\+K\+L25Z Freedom Board }
+
+-- -- Functional Description\+: This file contains routines that support messages -- to and from the U\+A\+RT port. Included are\+: -- Serial() -\/ a routine to send/receive bytes on the U\+A\+RT port to -- the transmit/receive buffers -- U\+A\+R\+T\+\_\+put() -\/ a routine that puts a character in the transmit buffer -- U\+A\+R\+T\+\_\+get() -\/ a routine that gets the next character from the receive -- buffer -- U\+A\+R\+T\+\_\+msg\+\_\+put() -\/ a routine that puts a string in the transmit buffer -- U\+A\+R\+T\+\_\+direct\+\_\+msg\+\_\+put() -\/ routine that sends a string out the U\+A\+RT port -- U\+A\+R\+T\+\_\+input() -\/ determines if a character has been received \subsubsection*{-- U\+A\+R\+T\+\_\+hex\+\_\+put() -\/ a routine that puts a hex byte in the transmit buffer }
+
+\subsubsection*{-- Copyright (c) 2015 Tim Scherr All rights reserved. }
+
+\subsection{Function Documentation}
+\index{U\+A\+R\+T\+\_\+poll.\+cpp@{U\+A\+R\+T\+\_\+poll.\+cpp}!serial@{serial}}
+\index{serial@{serial}!U\+A\+R\+T\+\_\+poll.\+cpp@{U\+A\+R\+T\+\_\+poll.\+cpp}}
+\subsubsection[{\texorpdfstring{serial(void)}{serial(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void serial (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{UART__poll_8cpp_a44becc30285e88213a624428b2b46cdf}{}\label{UART__poll_8cpp_a44becc30285e88213a624428b2b46cdf}
+function polls the serial port for Rx or Tx data 

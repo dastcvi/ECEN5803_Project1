@@ -84,6 +84,10 @@ float flow_rate = 0.0f;
 float velocity = 0.0f;
 float temperature = 0.0f;
 
+ /**
+ * @brief function configures the ADC
+ *
+ */
 bool adc_setup()
 {
   ADC0->CFG1   &= ~ADC_CFG1_ADLPC_MASK;  // no low power
@@ -148,6 +152,9 @@ void flip()
   greenLED = !greenLED;
 }
 
+ /**
+ * @brief function runs the super loop
+ */
 int main()
 {
   /* Initialize LEDs */
@@ -207,6 +214,9 @@ int main()
 
 /* In this simulation: draw one ADC value from the provided sample dataset */
 /* In real life: perform one ADC measurement */
+ /**
+ * @brief function reads the ADC
+ */
 uint16_t read_ADC()
 {
   return 0;
@@ -219,6 +229,9 @@ uint16_t read_ADC()
 
 /* Given the next measurement data point, calculate the estimated flow rate */
 /* This function has memory */
+ /**
+ * @brief function calculates the flow
+ */
 void calculate_flow(uint16_t measurement)
 {
   /* Declare static variables */
@@ -255,11 +268,18 @@ void calculate_flow(uint16_t measurement)
   flow_rate = velocity * 3.28084f * pid_in * pid_in * 2.45f; /* units of gallons per minute */
 }
 
+ /**
+ * @brief function outputs to the 4-20 mA loop with pulse width proportional to flow rate
+ */
 void output_420()
 {
   pwm3.pulsewidth(flow_rate/MAX_FLOW_RATE);
 }
 
+
+ /**
+ * @brief function outputs pulses at rate proportional to frequency
+ */
 void output_pulse()
 {
   pwm4.period_us((int) 1/frequency);

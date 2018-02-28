@@ -1,0 +1,275 @@
+\hypertarget{shared_8h}{}\section{shared.\+h File Reference}
+\label{shared_8h}\index{shared.\+h@{shared.\+h}}
+{\ttfamily \#include \char`\"{}mbed.\+h\char`\"{}}\\*
+Include dependency graph for shared.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries O\+FF}~0                       /$\ast$ used for readability $\ast$/\hypertarget{shared_8h_a29e413f6725b2ba32d165ffaa35b01e5}{}\label{shared_8h_a29e413f6725b2ba32d165ffaa35b01e5}
+
+\item 
+\#define {\bfseries ON}~1                        /$\ast$ used for readability $\ast$/\hypertarget{shared_8h_ad76d1750a6cdeebd506bfcd6752554d2}{}\label{shared_8h_ad76d1750a6cdeebd506bfcd6752554d2}
+
+\item 
+\#define {\bfseries NO}~0                        /$\ast$ used for readability $\ast$/\hypertarget{shared_8h_a996bde01ecac342918f0a2c4e7ce7bd5}{}\label{shared_8h_a996bde01ecac342918f0a2c4e7ce7bd5}
+
+\item 
+\#define {\bfseries Y\+ES}~1                       /$\ast$ used for readability $\ast$/\hypertarget{shared_8h_a7ebc9a785e5ab85457c98595aac81589}{}\label{shared_8h_a7ebc9a785e5ab85457c98595aac81589}
+
+\item 
+\#define {\bfseries T\+EN}~10\hypertarget{shared_8h_aabc53aa7e6353d8f58b8ae93fd015fab}{}\label{shared_8h_aabc53aa7e6353d8f58b8ae93fd015fab}
+
+\item 
+\#define {\bfseries T\+I\+M\+E\+R0}~T\+M\+R0\hypertarget{shared_8h_af1b746ba5ab7d0ab657156ebda0f290c}{}\label{shared_8h_af1b746ba5ab7d0ab657156ebda0f290c}
+
+\item 
+\#define {\bfseries S\+EC}~10000           /$\ast$ 10000 \hyperlink{timer0_8cpp_a2143aff1e880c3dc51e02ba9120825ea}{timer0} interrupts per second (100 usec.) $\ast$/\hypertarget{shared_8h_a8bc5e463885769f21393880576c25f6b}{}\label{shared_8h_a8bc5e463885769f21393880576c25f6b}
+
+\item 
+\#define {\bfseries T100\+MS}~0.\+1$\ast$S\+EC\hypertarget{shared_8h_a50185000f9f8cd56899b001eec0036ec}{}\label{shared_8h_a50185000f9f8cd56899b001eec0036ec}
+
+\item 
+\#define {\bfseries T2S}~2$\ast$S\+EC\hypertarget{shared_8h_af11a22d509a41e50981459e4fada2387}{}\label{shared_8h_af11a22d509a41e50981459e4fada2387}
+
+\item 
+\#define {\bfseries L\+E\+D\+\_\+\+F\+L\+A\+S\+H\+\_\+\+P\+E\+R\+I\+OD}~.\+5   /$\ast$ in seconds $\ast$/\hypertarget{shared_8h_acf08b26e9b85646a7f06ec2d27899084}{}\label{shared_8h_acf08b26e9b85646a7f06ec2d27899084}
+
+\item 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+C\+Y\+\_\+\+M\+HZ}~8\hypertarget{shared_8h_a2fa8ceb387e6f891d34c165bab636c08}{}\label{shared_8h_a2fa8ceb387e6f891d34c165bab636c08}
+
+\item 
+\#define {\bfseries C\+O\+D\+E\+\_\+\+V\+E\+R\+S\+I\+ON}~\char`\"{}2.\+0 2016/09/29\char`\"{}   /$\ast$   Y\+Y\+YY/MM/DD  $\ast$/\hypertarget{shared_8h_ad5003733db85e9d2720dd83336f77e23}{}\label{shared_8h_ad5003733db85e9d2720dd83336f77e23}
+
+\item 
+\#define {\bfseries C\+O\+P\+Y\+R\+I\+G\+HT}~\char`\"{}Copyright (c) University of Colorado\char`\"{}\hypertarget{shared_8h_a6247bc79b0a606bddbf5a90fc3a03194}{}\label{shared_8h_a6247bc79b0a606bddbf5a90fc3a03194}
+
+\item 
+\#define {\bfseries R\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}~10            /$\ast$ size of receive buffer in bytes $\ast$/\hypertarget{shared_8h_a690f985c933da2ce6fe62b6c61dfa662}{}\label{shared_8h_a690f985c933da2ce6fe62b6c61dfa662}
+
+\item 
+\#define {\bfseries T\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}~40           /$\ast$ size of transmit buffer in bytes $\ast$/\hypertarget{shared_8h_a5d3fb1970e1e98050006978a14b3d95e}{}\label{shared_8h_a5d3fb1970e1e98050006978a14b3d95e}
+
+\item 
+\#define {\bfseries M\+S\+G\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}~10\hypertarget{shared_8h_a8b8af8bedcac87c0d3c68634448b94a7}{}\label{shared_8h_a8b8af8bedcac87c0d3c68634448b94a7}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned char {\bfseries U\+C\+H\+AR}\hypertarget{shared_8h_a4f4bb67531a9bf6f0b9c6ad76aeba587}{}\label{shared_8h_a4f4bb67531a9bf6f0b9c6ad76aeba587}
+
+\item 
+typedef unsigned char {\bfseries bit}\hypertarget{shared_8h_a789d352559efaa396a258805d44f4289}{}\label{shared_8h_a789d352559efaa396a258805d44f4289}
+
+\item 
+typedef unsigned int {\bfseries uint32\+\_\+t}\hypertarget{shared_8h_a435d1572bf3f880d55459d9805097f62}{}\label{shared_8h_a435d1572bf3f880d55459d9805097f62}
+
+\item 
+typedef unsigned short {\bfseries uint16\+\_\+t}\hypertarget{shared_8h_a273cf69d639a59973b6019625df33e30}{}\label{shared_8h_a273cf69d639a59973b6019625df33e30}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries boolean} \{ {\bfseries F\+A\+L\+SE}, 
+{\bfseries T\+R\+UE}
+ \}\hypertarget{shared_8h_a7c6368b321bd9acd0149b030bb8275ed}{}\label{shared_8h_a7c6368b321bd9acd0149b030bb8275ed}
+
+\item 
+enum {\bfseries dmode} \{ \\*
+{\bfseries Q\+U\+I\+ET}, 
+{\bfseries N\+O\+R\+M\+AL}, 
+{\bfseries D\+E\+B\+UG}, 
+{\bfseries V\+E\+R\+S\+I\+ON}, 
+\\*
+{\bfseries R\+E\+G\+I\+S\+T\+ER}
+ \}\hypertarget{shared_8h_ad8667bac763ba2aa5d7c29541fecf0a6}{}\label{shared_8h_ad8667bac763ba2aa5d7c29541fecf0a6}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{shared_8h_a59a4a0c8721f73a8c9d9db5a4cdc6e88}{monitor} (void)
+\begin{DoxyCompactList}\small\item\em run the serial monitor \end{DoxyCompactList}\item 
+void \hyperlink{shared_8h_a2143aff1e880c3dc51e02ba9120825ea}{timer0} (void)\hypertarget{shared_8h_a2143aff1e880c3dc51e02ba9120825ea}{}\label{shared_8h_a2143aff1e880c3dc51e02ba9120825ea}
+
+\begin{DoxyCompactList}\small\item\em 10 k\+Hz timer I\+SR \end{DoxyCompactList}\item 
+void \hyperlink{shared_8h_a44becc30285e88213a624428b2b46cdf}{serial} (void)
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+put} (U\+C\+H\+AR)\hypertarget{shared_8h_a0fb31e1688054207fb118b6fc6edb43b}{}\label{shared_8h_a0fb31e1688054207fb118b6fc6edb43b}
+
+\item 
+U\+C\+H\+AR {\bfseries U\+A\+R\+T\+\_\+get} (void)\hypertarget{shared_8h_a6659a2fc6c6bccd0206e0d12798cc4b6}{}\label{shared_8h_a6659a2fc6c6bccd0206e0d12798cc4b6}
+
+\item 
+U\+C\+H\+AR {\bfseries U\+A\+R\+T\+\_\+input} (void)\hypertarget{shared_8h_af92515bd65cb7df035cfe5b38c4faf40}{}\label{shared_8h_af92515bd65cb7df035cfe5b38c4faf40}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+direct\+\_\+msg\+\_\+put} (const char $\ast$)\hypertarget{shared_8h_a4037414d6697571ef8f41e908e6aa539}{}\label{shared_8h_a4037414d6697571ef8f41e908e6aa539}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+msg\+\_\+put} (const char $\ast$)\hypertarget{shared_8h_aff5c8c647b366f30a42c0c7193c82328}{}\label{shared_8h_aff5c8c647b366f30a42c0c7193c82328}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+direct\+\_\+hex\+\_\+put} (U\+C\+H\+AR)\hypertarget{shared_8h_acc22f971d3bd679767c12aff973e204d}{}\label{shared_8h_acc22f971d3bd679767c12aff973e204d}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+direct\+\_\+put} (U\+C\+H\+AR)\hypertarget{shared_8h_a735a700586542cfb8b36264a8c936543}{}\label{shared_8h_a735a700586542cfb8b36264a8c936543}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+hex\+\_\+put} (U\+C\+H\+AR)\hypertarget{shared_8h_a7a715c8a8bf1626e1233073e738ec4d2}{}\label{shared_8h_a7a715c8a8bf1626e1233073e738ec4d2}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+low\+\_\+nibble\+\_\+put} (U\+C\+H\+AR)\hypertarget{shared_8h_a0b017a33a6ddb6bd63c047d900d940f8}{}\label{shared_8h_a0b017a33a6ddb6bd63c047d900d940f8}
+
+\item 
+void {\bfseries U\+A\+R\+T\+\_\+high\+\_\+nibble\+\_\+put} (U\+C\+H\+AR)\hypertarget{shared_8h_a3b21c4a271c6ceda689d8f2f0073816b}{}\label{shared_8h_a3b21c4a271c6ceda689d8f2f0073816b}
+
+\item 
+void \hyperlink{shared_8h_a29be7c30b6929c50ebb985b228fc1be2}{chk\+\_\+\+U\+A\+R\+T\+\_\+msg} (void)
+\begin{DoxyCompactList}\small\item\em check for U\+A\+RT message function \end{DoxyCompactList}\item 
+void \hyperlink{shared_8h_a826db354ae1d910792a0330f8d4eb91a}{U\+A\+R\+T\+\_\+msg\+\_\+process} (void)
+\begin{DoxyCompactList}\small\item\em process U\+A\+RT message \end{DoxyCompactList}\item 
+void {\bfseries status\+\_\+report} (void)\hypertarget{shared_8h_ad6e5f59640709c2b2e22f5df6b1b5a65}{}\label{shared_8h_ad6e5f59640709c2b2e22f5df6b1b5a65}
+
+\item 
+void {\bfseries set\+\_\+display\+\_\+mode} (void)\hypertarget{shared_8h_acd5157b5f415f4ca9be9b2a23943440c}{}\label{shared_8h_acd5157b5f415f4ca9be9b2a23943440c}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char {\bfseries Error\+\_\+status}\hypertarget{shared_8h_a3a055bd8f39421ff541e8f42bf186ca1}{}\label{shared_8h_a3a055bd8f39421ff541e8f42bf186ca1}
+
+\item 
+U\+C\+H\+AR {\bfseries display\+\_\+timer}\hypertarget{shared_8h_a442cda58cb38998e6b401a206812abc7}{}\label{shared_8h_a442cda58cb38998e6b401a206812abc7}
+
+\item 
+U\+C\+H\+AR {\bfseries display\+\_\+flag}\hypertarget{shared_8h_a5181f1333dde4900e80f8f5a3a9b8d6f}{}\label{shared_8h_a5181f1333dde4900e80f8f5a3a9b8d6f}
+
+\item 
+U\+C\+H\+AR {\bfseries tx\+\_\+in\+\_\+progress}\hypertarget{shared_8h_a98f272c95c5042cb7e471c263ff3428a}{}\label{shared_8h_a98f272c95c5042cb7e471c263ff3428a}
+
+\item 
+U\+C\+H\+AR $\ast$ {\bfseries rx\+\_\+in\+\_\+ptr}\hypertarget{shared_8h_a8d695c28e785556b86dac9e45c4c3122}{}\label{shared_8h_a8d695c28e785556b86dac9e45c4c3122}
+
+\item 
+U\+C\+H\+AR $\ast$ {\bfseries rx\+\_\+out\+\_\+ptr}\hypertarget{shared_8h_a315bac0a214db7b93444e48a9fecf62a}{}\label{shared_8h_a315bac0a214db7b93444e48a9fecf62a}
+
+\item 
+U\+C\+H\+AR $\ast$ {\bfseries tx\+\_\+in\+\_\+ptr}\hypertarget{shared_8h_af23cf18108f1b1c64f893699ab61f36a}{}\label{shared_8h_af23cf18108f1b1c64f893699ab61f36a}
+
+\item 
+U\+C\+H\+AR $\ast$ {\bfseries tx\+\_\+out\+\_\+ptr}\hypertarget{shared_8h_ab49cf819b9bda39e93f857840e4ad56b}{}\label{shared_8h_ab49cf819b9bda39e93f857840e4ad56b}
+
+\item 
+volatile U\+C\+H\+AR {\bfseries swtimer0}\hypertarget{shared_8h_ab3c7118b2b6cd60ff7109eb2bbcb341c}{}\label{shared_8h_ab3c7118b2b6cd60ff7109eb2bbcb341c}
+
+\item 
+volatile U\+C\+H\+AR {\bfseries swtimer1}\hypertarget{shared_8h_a3f17fef7afff10366da305000e60fab8}{}\label{shared_8h_a3f17fef7afff10366da305000e60fab8}
+
+\item 
+volatile U\+C\+H\+AR {\bfseries swtimer2}\hypertarget{shared_8h_a950d3e69a88af19d273174a9d9ad9d32}{}\label{shared_8h_a950d3e69a88af19d273174a9d9ad9d32}
+
+\item 
+volatile U\+C\+H\+AR {\bfseries swtimer3}\hypertarget{shared_8h_a54f04a4f1b3876feefb6f986665ccbbc}{}\label{shared_8h_a54f04a4f1b3876feefb6f986665ccbbc}
+
+\item 
+volatile U\+C\+H\+AR {\bfseries swtimer4}\hypertarget{shared_8h_a53fac1bb12d08ab3f827cb58636f5bf8}{}\label{shared_8h_a53fac1bb12d08ab3f827cb58636f5bf8}
+
+\item 
+volatile U\+C\+H\+AR {\bfseries swtimer5}\hypertarget{shared_8h_a690548ce3dd59501dd3f539b665f7b78}{}\label{shared_8h_a690548ce3dd59501dd3f539b665f7b78}
+
+\item 
+volatile U\+C\+H\+AR {\bfseries swtimer6}\hypertarget{shared_8h_a2aa5e7d06d65728e09afb95cd7a07ad3}{}\label{shared_8h_a2aa5e7d06d65728e09afb95cd7a07ad3}
+
+\item 
+volatile U\+C\+H\+AR {\bfseries swtimer7}\hypertarget{shared_8h_a60c6a425138705b5dd07afa68d558032}{}\label{shared_8h_a60c6a425138705b5dd07afa68d558032}
+
+\item 
+U\+C\+H\+AR {\bfseries serial\+\_\+flag}\hypertarget{shared_8h_a1e67c2f1c20356a956f8f12a133423e0}{}\label{shared_8h_a1e67c2f1c20356a956f8f12a133423e0}
+
+\item 
+enum dmode {\bfseries display\+\_\+mode}\hypertarget{shared_8h_a0f999d5d275d3149a605333813bb889d}{}\label{shared_8h_a0f999d5d275d3149a605333813bb889d}
+
+\item 
+U\+C\+H\+AR {\bfseries rx\+\_\+buf} \mbox{[}$\,$\mbox{]}\hypertarget{shared_8h_a25bc7bfd1e3953e7d0829193c1448933}{}\label{shared_8h_a25bc7bfd1e3953e7d0829193c1448933}
+
+\item 
+U\+C\+H\+AR {\bfseries tx\+\_\+buf} \mbox{[}$\,$\mbox{]}\hypertarget{shared_8h_a5fd5e3c46add89816ee9c575634b5d54}{}\label{shared_8h_a5fd5e3c46add89816ee9c575634b5d54}
+
+\item 
+U\+C\+H\+AR {\bfseries msg\+\_\+buf} \mbox{[}M\+S\+G\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE\mbox{]}\hypertarget{shared_8h_ad82c4abfc1c5cefb64c6725d6c544855}{}\label{shared_8h_ad82c4abfc1c5cefb64c6725d6c544855}
+
+\item 
+U\+C\+H\+AR {\bfseries msg\+\_\+buf\+\_\+idx}\hypertarget{shared_8h_a69fb01b86051dd5bc29e16cd9b6f48db}{}\label{shared_8h_a69fb01b86051dd5bc29e16cd9b6f48db}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+
+
+ -- E\+C\+EN 5803 Mastering Embedded System Architecture -- -- Project 1 Module 3 -- -- Microcontroller Firmware -- -- \hyperlink{shared_8h}{shared.\+h} -- \subsubsection*{-- -- }
+
+-- \subsubsection*{-- Designed for\+: University of Colorado at Boulder }
+
+-- -- Designed by\+: Tim Scherr \subsubsection*{-- Revised by\+: Student\textquotesingle{}s name }
+
+-- Version\+: 2.\+0 -- Date of current revision\+: 2017-\/09-\/20 -- Target Microcontroller\+: Freescale M\+K\+L25\+Z\+V\+M\+T4 -- Tools used\+: A\+RM mbed compiler -- A\+RM mbed S\+DK \subsubsection*{-- Freescale F\+R\+D\+M-\/\+K\+L25Z Freedom Board }
+
+-- \subsubsection*{-- Functional Description\+: Header file for all globals }
+
+\subsubsection*{-- Copyright (c) 2015 Tim Scherr All rights reserved. }
+
+\subsection{Function Documentation}
+\index{shared.\+h@{shared.\+h}!chk\+\_\+\+U\+A\+R\+T\+\_\+msg@{chk\+\_\+\+U\+A\+R\+T\+\_\+msg}}
+\index{chk\+\_\+\+U\+A\+R\+T\+\_\+msg@{chk\+\_\+\+U\+A\+R\+T\+\_\+msg}!shared.\+h@{shared.\+h}}
+\subsubsection[{\texorpdfstring{chk\+\_\+\+U\+A\+R\+T\+\_\+msg(void)}{chk_UART_msg(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void chk\+\_\+\+U\+A\+R\+T\+\_\+msg (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{shared_8h_a29be7c30b6929c50ebb985b228fc1be2}{}\label{shared_8h_a29be7c30b6929c50ebb985b228fc1be2}
+
+
+check for U\+A\+RT message function 
+
+This function checks for a valid U\+A\+RT message \index{shared.\+h@{shared.\+h}!monitor@{monitor}}
+\index{monitor@{monitor}!shared.\+h@{shared.\+h}}
+\subsubsection[{\texorpdfstring{monitor(void)}{monitor(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void monitor (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{shared_8h_a59a4a0c8721f73a8c9d9db5a4cdc6e88}{}\label{shared_8h_a59a4a0c8721f73a8c9d9db5a4cdc6e88}
+
+
+run the serial monitor 
+
+This function runs the serial monitor which outputs different data depending upon the selected mode. \index{shared.\+h@{shared.\+h}!serial@{serial}}
+\index{serial@{serial}!shared.\+h@{shared.\+h}}
+\subsubsection[{\texorpdfstring{serial(void)}{serial(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void serial (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{shared_8h_a44becc30285e88213a624428b2b46cdf}{}\label{shared_8h_a44becc30285e88213a624428b2b46cdf}
+function polls the serial port for Rx or Tx data \index{shared.\+h@{shared.\+h}!U\+A\+R\+T\+\_\+msg\+\_\+process@{U\+A\+R\+T\+\_\+msg\+\_\+process}}
+\index{U\+A\+R\+T\+\_\+msg\+\_\+process@{U\+A\+R\+T\+\_\+msg\+\_\+process}!shared.\+h@{shared.\+h}}
+\subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+msg\+\_\+process(void)}{UART_msg_process(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void U\+A\+R\+T\+\_\+msg\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{shared_8h_a826db354ae1d910792a0330f8d4eb91a}{}\label{shared_8h_a826db354ae1d910792a0330f8d4eb91a}
+
+
+process U\+A\+RT message 
+
+This message processes U\+A\+RT messages that have been received
+
+U\+A\+RT Input Message Processing 

@@ -68,8 +68,12 @@
  
  UCHAR error_count = 0;
  
-///  \fn void serial(void) 
-/// function polls the serial port for Rx or Tx data
+///  \fn void serial(void)  
+/**
+ * @brief function polls the serial port for Rx or Tx data
+ *
+ * This function checks for a valid UART message
+ */
 void serial(void)       // The serial function polls the serial port for 
                         // received data or data to transmit
 {

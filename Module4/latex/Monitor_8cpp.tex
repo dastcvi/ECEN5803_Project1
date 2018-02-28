@@ -1,0 +1,74 @@
+\hypertarget{Monitor_8cpp}{}\section{Monitor.\+cpp File Reference}
+\label{Monitor_8cpp}\index{Monitor.\+cpp@{Monitor.\+cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}shared.\+h\char`\"{}}\\*
+Include dependency graph for Monitor.\+cpp\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t {\bfseries itoa} (int32\+\_\+t data, uint8\+\_\+t $\ast$ptr, uint32\+\_\+t base)\hypertarget{Monitor_8cpp_a5e50b6126150770a29deb3ec4e6961aa}{}\label{Monitor_8cpp_a5e50b6126150770a29deb3ec4e6961aa}
+
+\item 
+uint8\+\_\+t $\ast$ {\bfseries reverse} (uint8\+\_\+t $\ast$src, size\+\_\+t length)\hypertarget{Monitor_8cpp_a680c835d7f015ed3d76871ba333c8bda}{}\label{Monitor_8cpp_a680c835d7f015ed3d76871ba333c8bda}
+
+\item 
+void {\bfseries set\+\_\+display\+\_\+mode} (void)\hypertarget{Monitor_8cpp_acd5157b5f415f4ca9be9b2a23943440c}{}\label{Monitor_8cpp_acd5157b5f415f4ca9be9b2a23943440c}
+
+\item 
+void {\bfseries chk\+\_\+\+U\+A\+R\+T\+\_\+msg} (void)\hypertarget{Monitor_8cpp_a29be7c30b6929c50ebb985b228fc1be2}{}\label{Monitor_8cpp_a29be7c30b6929c50ebb985b228fc1be2}
+
+\item 
+void \hyperlink{Monitor_8cpp_a826db354ae1d910792a0330f8d4eb91a}{U\+A\+R\+T\+\_\+msg\+\_\+process} (void)
+\item 
+U\+C\+H\+AR {\bfseries is\+\_\+hex} (U\+C\+H\+AR c)\hypertarget{Monitor_8cpp_a36deb5746c8cfaa074b74b99341673ec}{}\label{Monitor_8cpp_a36deb5746c8cfaa074b74b99341673ec}
+
+\item 
+void {\bfseries monitor} (void)\hypertarget{Monitor_8cpp_a59a4a0c8721f73a8c9d9db5a4cdc6e88}{}\label{Monitor_8cpp_a59a4a0c8721f73a8c9d9db5a4cdc6e88}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float {\bfseries frequency}\hypertarget{Monitor_8cpp_acdfc8898c9e67fbcec81f3b04ae61bd9}{}\label{Monitor_8cpp_acdfc8898c9e67fbcec81f3b04ae61bd9}
+
+\item 
+float {\bfseries flow\+\_\+rate}\hypertarget{Monitor_8cpp_ac03c805c3f48efb3f661537e49fdb2e6}{}\label{Monitor_8cpp_ac03c805c3f48efb3f661537e49fdb2e6}
+
+\item 
+float {\bfseries velocity}\hypertarget{Monitor_8cpp_ac46e821ae08930cc9e257642e34275a3}{}\label{Monitor_8cpp_ac46e821ae08930cc9e257642e34275a3}
+
+\item 
+float {\bfseries temperature}\hypertarget{Monitor_8cpp_afc1d28cfbce795d6ea954ebe725241f5}{}\label{Monitor_8cpp_afc1d28cfbce795d6ea954ebe725241f5}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+
+
+ -- E\+C\+EN 5003 Mastering Embedded System Architecture -- -- Project 1 Module 3 -- -- Microcontroller Firmware -- -- \hyperlink{Monitor_8cpp}{Monitor.\+cpp} -- \subsubsection*{-- -- }
+
+-- \subsubsection*{-- Designed for\+: University of Colorado at Boulder }
+
+-- -- Designed by\+: Tim Scherr \subsubsection*{-- Revised by\+: Matthew Haney and Alex St. Clair }
+
+-- Version\+: 2.\+0 -- Date of current revision\+: 2016-\/09-\/29 -- Target Microcontroller\+: Freescale M\+K\+L25\+Z\+V\+M\+T4 -- Tools used\+: A\+RM mbed compiler -- A\+RM mbed S\+DK \subsubsection*{-- Freescale F\+R\+D\+M-\/\+K\+L25Z Freedom Board }
+
+-- \subsubsection*{Functional Description\+: See below }
+
+\subsubsection*{-- Copyright (c) 2015 Tim Scherr All rights reserved. }
+
+\subsection{Function Documentation}
+\index{Monitor.\+cpp@{Monitor.\+cpp}!U\+A\+R\+T\+\_\+msg\+\_\+process@{U\+A\+R\+T\+\_\+msg\+\_\+process}}
+\index{U\+A\+R\+T\+\_\+msg\+\_\+process@{U\+A\+R\+T\+\_\+msg\+\_\+process}!Monitor.\+cpp@{Monitor.\+cpp}}
+\subsubsection[{\texorpdfstring{U\+A\+R\+T\+\_\+msg\+\_\+process(void)}{UART_msg_process(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void U\+A\+R\+T\+\_\+msg\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{Monitor_8cpp_a826db354ae1d910792a0330f8d4eb91a}{}\label{Monitor_8cpp_a826db354ae1d910792a0330f8d4eb91a}
+U\+A\+RT Input Message Processing 
