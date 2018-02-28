@@ -53,11 +53,11 @@ extern volatile uint16_t SwTimerIsrCounter;
 
 /* Superloop function prototypes */
 uint16_t read_ADC();
-float calculate_flow(uint16_t, float*);
-void output_420(float);
-void output_pulse(float);
-void output_LCD(float);
-float read_temperature();
+void calculate_flow(uint16_t);
+void output_420();
+void output_pulse();
+void output_LCD();
+void read_temperature();
 
 Ticker tick;             //  Creates a timer interrupt using mbed methods
 /****************      ECEN 5803 add code as indicated   ***************/
@@ -78,6 +78,12 @@ SPI lcd_out(PTC4, PTC5, PTC6, PTC7); // use 1 MHz, mode 0 SPI
 
 Serial pc(USBTX, USBRX);
 
+/* Variables to also be read in Monitor.cpp */
+static float frequency = 0.0f;
+static float flow_rate = 0.0f;
+static float velocity = 0.0f;
+static float temperature = 0.0f;
+
 bool adc_setup()
 {
   ADC0->CFG1   &= ~ADC_CFG1_ADLPC_MASK;  // no low power
@@ -93,14 +99,14 @@ bool adc_setup()
   //    ADC0->SC1[0] |= 0b11110;               // select REFSL as input
 
   // channel-specific (vortex)
-  ADC0->CFG1   |= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
-  ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
-  ADC0->SC1[0] |= 0b00001;               // select DAD1 as input
+  // ADC0->CFG1   |= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
+  // ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
+  // ADC0->SC1[0] |= 0b00001;               // select DAD1 as input
 
   // channel-specific (temperature)
-  //    ADC0->CFG1   &= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
-  //    ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
-  //    ADC0->SC1[0] |= 0b11010;               // select Temp Sensor as input
+  ADC0->CFG1   &= ADC_CFG1_MODE_MASK;    // 16-bit, single-ended
+  ADC0->SC1[0] &= ~ADC_SC1_ADCH_MASK;    // clear input channel select
+  ADC0->SC1[0] |= 0b11010;               // select Temp Sensor as input
 
   // start ADC calibration
   ADC0->SC2 &= ~ADC_SC2_ADTRG_MASK; // ensure software trigger is set
@@ -175,8 +181,6 @@ int main()
   set_display_mode();
 
   uint16_t measurement;
-  float flow_rate;
-  float frequency;
 
   while(1) {     // Cyclical Executive Loop
     count++;                  // counts the number of times through the loop
@@ -191,10 +195,10 @@ int main()
     /****************      ECEN 5803 add code as indicated   ***************/
 
     measurement = read_ADC();
-    flow_rate = calculate_flow(measurement, &frequency);
-    output_420(flow_rate);
-    output_pulse(frequency);
-    output_LCD(flow_rate);
+    calculate_flow(measurement);
+    output_420();
+    output_pulse();
+    output_LCD();
     if ((SwTimerIsrCounter & 0x1FFF) > 0x0FFF) {
       flip();  // Toggle Green LED
     }
@@ -215,11 +219,9 @@ uint16_t read_ADC()
 
 /* Given the next measurement data point, calculate the estimated flow rate */
 /* This function has memory */
-float calculate_flow(uint16_t measurement, float * return_frequency)
+void calculate_flow(uint16_t measurement)
 {
   /* Declare static variables */
-  static float freq = 0;
-  static float flow_rate = 0;
   static uint16_t last_measurement = 0;
   static uint16_t zero_crossings = 0;
   static uint16_t data_points = 0;
@@ -227,19 +229,16 @@ float calculate_flow(uint16_t measurement, float * return_frequency)
   data_points++;
 
   /* Derived constants - ideally optimized away at compilation */
-  const float diameter_m = 0.0127f; /* Bluff body diameter in meters */
-  const float diameter_in = 0.5f; /* Bluff body diameter in inches */
-  const float pid_m = 0.07366f; /* Pipe inner diameter in meters */
-  const float pid_in = 2.9f; /* Pipe inner diameter in inches */
-  float T = 300.0f; /* Assume room temperature, units K */
-  const float timestep = 0.0001f; /* 100us sample time */
-  const float viscosity = 2.4f * 0.00001f * pow(10.0f, 247.8f / (T - 140.0f)); /* units kg/m^3 */
-  const float rho = 1000.0f * (1.0f - (T + 288.9414f) / (508929.2f * (T + 68.12963f)) * pow(T - 3.9863f, 2.0f)); /* units kg/(m*s) */
-
-  float velocity;
+  float diameter_m = 0.0127f; /* Bluff body diameter in meters */
+  float diameter_in = 0.5f; /* Bluff body diameter in inches */
+  float pid_m = 0.07366f; /* Pipe inner diameter in meters */
+  float pid_in = 2.9f; /* Pipe inner diameter in inches */
+  float timestep = 0.0001f; /* 100us sample time */
+  float viscosity = 2.4f * 0.00001f * pow(10.0f, 247.8f / (temperature - 140.0f)); /* units kg/m^3 */
+  float rho = 1000.0f * (1.0f - (temperature + 288.9414f) / (508929.2f * (temperature + 68.12963f)) * pow(temperature - 3.9863f, 2.0f)); /* units kg/(m*s) */
 
   /* Read temperature */
-  T = read_temperature();
+  read_temperature();
 
   /* First: calculate frequency estimate from measurement */
   if ((measurement > OFFSET_ZERO && last_measurement < OFFSET_ZERO) || (measurement < OFFSET_ZERO && last_measurement > OFFSET_ZERO)) {
@@ -247,33 +246,39 @@ float calculate_flow(uint16_t measurement, float * return_frequency)
     zero_crossings++;
   }
   last_measurement = measurement;
-  freq = (float)(zero_crossings) / ((float)(data_points) * 4.0f / 3.0f * timestep);
+  frequency = (float)(zero_crossings) / ((float)(data_points) * 4.0f / 3.0f * timestep);
 
   /* Next: calculate velocity from frequency estimate */
-  velocity = 1.0f / (diameter_m * rho) * 0.00000111051f * (3355000.0f * diameter_m * diameter_m * freq * rho + 6702921.0f * viscosity);
+  velocity = 1.0f / (diameter_m * rho) * 0.00000111051f * (3355000.0f * diameter_m * diameter_m * frequency * rho + 6702921.0f * viscosity);
 
   /* Next: calculate flow rate from velocity */
   flow_rate = velocity * 3.28084f * pid_in * pid_in * 2.45f; /* units of gallons per minute */
-
-  *return_frequency = freq;
-  return flow_rate;
 }
 
-void output_420(float flow_rate)
+void output_420()
 {
   pwm3.pulsewidth(flow_rate/MAX_FLOW_RATE);
 }
 
-void output_pulse(float frequency)
+void output_pulse()
 {
   pwm4.period_us((int) 1/frequency);
 }
 
-void output_LCD(float flow_rate)
+void output_LCD()
 {
   lcd_out.write((int) flow_rate);
 }
 
-float read_temperature() {
-  return (float)(temp_adc) + 274.15;
+void read_temperature() {
+  float Vtemp = (float)(temp_adc);
+  /* Begin code from "Temperature Sensor for the HCS08 Microcontroller Family" app note document */
+  Vtemp = Vtemp * 0.0029296875f;
+  if (Vtemp >= .7012f) {
+    temperature = 25.0f - ((Vtemp - .7012f) / .001646f);
+  } else {
+    temperature = 25.0f - ((Vtemp - .7012f) / .001749f);
+  }
+  /* End code from "Temperature Sensor for the HCS08 Microcontroller Family" app note document */
+  temperature += 274.15f; /* Convert from Celsius to Kelvin */
 }
