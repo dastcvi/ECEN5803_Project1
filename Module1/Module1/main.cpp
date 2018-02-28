@@ -83,17 +83,20 @@ int main(void){
     r = my_sqrt(2);   /* r = 1*/
     timer.stop();
     times[0] = timer.read_us();
-    
+    timer.reset();    
+
     timer.start();
     r = my_sqrt(4);   /* r = 2*/
     timer.stop();
     times[1] = timer.read_us();
-    
+    timer.reset();    
+
     timer.start();
     r = my_sqrt(22);  /* r = 4*/ 
     timer.stop();
     times[2] = timer.read_us();
-    
+    timer.reset();   
+ 
     timer.start();
     r = my_sqrt(121); /* r = 11*/
     timer.stop();
