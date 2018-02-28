@@ -79,10 +79,10 @@ SPI lcd_out(PTC4, PTC5, PTC6, PTC7); // use 1 MHz, mode 0 SPI
 Serial pc(USBTX, USBRX);
 
 /* Variables to also be read in Monitor.cpp */
-static float frequency = 0.0f;
-static float flow_rate = 0.0f;
-static float velocity = 0.0f;
-static float temperature = 0.0f;
+float frequency = 0.0f;
+float flow_rate = 0.0f;
+float velocity = 0.0f;
+float temperature = 0.0f;
 
 bool adc_setup()
 {
